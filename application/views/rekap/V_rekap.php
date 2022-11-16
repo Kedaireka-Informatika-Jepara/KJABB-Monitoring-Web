@@ -1,18 +1,27 @@
 <script>
     function getfilter() {
         var filter = document.forms["FormFilter"]["filter"].value;
-        if (filter == '1') { //per tanggal
+        if(filter == 'pilih'){
+            document.getElementById("tanggal").disabled = true;
+            document.getElementById("bulan").disabled = true;
+            document.getElementById("tahun").disabled = true;
+            document.getElementById("btn-tampilkan").disabled = true;
+        }
+        else if (filter == '1') { //per tanggal
             document.getElementById("tanggal").disabled = false;
             document.getElementById("bulan").disabled = true;
             document.getElementById("tahun").disabled = true;
+            document.getElementById("btn-tampilkan").disabled = false;
         } else if (filter == '2') { //per bulan
             document.getElementById("bulan").disabled = false;
             document.getElementById("tahun").disabled = false;
             document.getElementById("tanggal").disabled = true;
+            document.getElementById("btn-tampilkan").disabled = false;
         } else { //per tahun
             document.getElementById("tanggal").disabled = true;
             document.getElementById("bulan").disabled = true;
             document.getElementById("tahun").disabled = false;
+            document.getElementById("btn-tampilkan").disabled = false;
         }
     }
 
@@ -50,7 +59,7 @@ if (!empty($this->session->flashdata('info'))) { ?>
                     <div class="form-group">
                         <label>Filter Berdasarkan</label>
                         <select name="filter" id="filter" class="form-control" onchange="getfilter()">
-                            <option value="">Pilih</option>
+                            <option value="pilih">Pilih</option>
                             <option value="1">Per Tanggal</option>
                             <option value="2">Per Bulan</option>
                             <option value="3">Per Tahun</option>
@@ -60,13 +69,13 @@ if (!empty($this->session->flashdata('info'))) { ?>
                 <div class="col-sm-3 col-md-2">
                     <div class="form-group">
                         <label>Tanggal</label>
-                        <input type="date" id="tanggal" name="tanggal" class="form-control datepicker" autocomplete="off" />
+                        <input type="date" id="tanggal" name="tanggal" class="form-control datepicker" autocomplete="off" disabled/>
                     </div>
                 </div>
                 <div class="col-sm-3 col-md-2" id="form-bulan">
                     <div class="form-group">
                         <label>Bulan</label>
-                        <select name="bulan" id="bulan" class="form-control">
+                        <select name="bulan" id="bulan" class="form-control" disabled>
                             <option value="">Pilih</option>
                             <option value="1">Januari</option>
                             <option value="2">Februari</option>
@@ -86,7 +95,7 @@ if (!empty($this->session->flashdata('info'))) { ?>
                 <div class="col-sm-3 col-md-2" id="form-tahun">
                     <div class="form-group">
                         <label>Tahun</label>
-                        <select name="tahun" id="tahun" class="form-control">
+                        <select name="tahun" id="tahun" class="form-control" disabled>
                             <option value="">Pilih</option>
                             <?php
                             foreach ($option_tahun as $data) { // Ambil data tahun dari model yang dikirim dari controller
@@ -101,7 +110,7 @@ if (!empty($this->session->flashdata('info'))) { ?>
             </div>
             <div class="row">
             </div>
-            <button type="submit" class="btn btn-primary">Tampilkan</button>
+            <button disabled id="btn-tampilkan" type="submit" class="btn btn-primary">Tampilkan</button>
             <a href="<?= base_url() ?>rekap" class="btn btn-warning">Reset Filter</a>
         </form>
         <br>
