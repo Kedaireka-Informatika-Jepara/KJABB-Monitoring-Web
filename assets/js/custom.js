@@ -270,7 +270,7 @@
 
 		// ToolTip Notice JS
 		new jBox('Notice', {
-			content: 'Welcome To Joxi!',
+			content: 'Welcome To Monitoring Sensor App!',
 			color: 'blue'
 		});
 

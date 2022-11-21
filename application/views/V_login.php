@@ -31,13 +31,6 @@
   <link rel="stylesheet" href="<?= base_url() ?>assets/css/footer.css">
   <link rel="stylesheet" href="<?= base_url() ?>assets/css/style.css">
   <link rel="stylesheet" href="<?= base_url() ?>assets/css/responsive.css">
-  <!-- <link rel="stylesheet" href="<?= base_url() ?>assets/bower_components/bootstrap/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="<?= base_url() ?>assets/bower_components/font-awesome/css/font-awesome.min.css">
-  <link rel="stylesheet" href="<?= base_url() ?>assets/bower_components/Ionicons/css/ionicons.min.css">
-  <link rel="stylesheet" href="<?= base_url() ?>assets/dist/css/AdminLTE.min.css">
-  <link rel="stylesheet" href="<?= base_url() ?>assets/plugins/iCheck/square/blue.css"> -->
-  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous"> -->
-
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
@@ -50,7 +43,7 @@
   </style>
 </head>
 
-<body class="hold-transition login-page" style="background-image: url(<?php echo base_url('assets/dist/img/kerambaa.jpg'); ?>);background-size:cover">
+<body class="hold-transition login-page" style="background-image: url(<?php echo base_url('assets/dist/img/KJABB.jpeg'); ?>);background-size:cover">
   <nav class="navbar navbar-default" role="navigation" style="height: 60px;">
     <ul style="position: absolute; width: 100%;left: 0; text-align: center; margin:0 auto; z-index:3; top: 7px;">
       <img src="<?php echo base_url('assets/dist/img/undip.png'); ?>" width="35px" height="35px" style="margin-right: 15px;">
@@ -67,7 +60,7 @@
 
   <div class="account-content">
     <div class="account-header">
-      <a href="index.html">
+      <a href="">
         <img src="assets/dist/img/kedaireka2.png" alt="main-logo">
       </a>
       <?= $this->session->flashdata('info'); ?>
@@ -91,9 +84,20 @@
 
   </div>
 
-  <script src="<?= base_url() ?>assets/bower_components/jquery/dist/jquery.min.js"></script>
-  <script src="<?= base_url() ?>assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="<?= base_url() ?>assets/plugins/iCheck/icheck.min.js"></script>
+  <script src="<?= base_url() ?>assets/js/jquery.min.js"></script>
+  <script src="<?= base_url() ?>assets/js/bootstrap.bundle.min.js"></script>
+  <script src="<?= base_url() ?>assets/js/owl.carousel.min.js"></script>
+  <script src="<?= base_url() ?>assets/js/metismenu.min.js"></script>
+  <script src="<?= base_url() ?>assets/js/simplebar.min.js"></script>
+  <script src="<?= base_url() ?>assets/js/geticons.js"></script>
+  <script src="<?= base_url() ?>assets/js/sweetalert2.all.min.js"></script>
+  <script src="<?= base_url() ?>assets/js/jbox.all.min.js"></script>
+  <script src="<?= base_url() ?>assets/js/editor.js"></script>
+  <script src="<?= base_url() ?>assets/js/form-validator.min.js"></script>
+  <script src="<?= base_url() ?>assets/js/contact-form-script.js"></script>
+  <script src="<?= base_url() ?>assets/js/ajaxchimp.min.js"></script>
+  <script src="<?= base_url() ?>assets/js/custom.js"></script>
   <script>
     $(function() {
       $('input').iCheck({
