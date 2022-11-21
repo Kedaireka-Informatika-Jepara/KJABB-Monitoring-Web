@@ -1,133 +1,873 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Monitoring | <?= $judul; ?></title>
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <link rel="stylesheet" href="<?= base_url() ?>assets/bower_components/bootstrap/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="<?= base_url() ?>assets/bower_components/select2/dist/css/select2.min.css">
-  <link rel="stylesheet" href="<?= base_url() ?>assets/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
-  <link rel="stylesheet" href="<?= base_url() ?>assets/bower_components/font-awesome/css/font-awesome.min.css">
-  <link rel="stylesheet" href="<?= base_url() ?>assets/bower_components/Ionicons/css/ionicons.min.css">
-  <link rel="stylesheet" href="<?= base_url() ?>assets/dist/css/AdminLTE.min.css">
-  <link rel="stylesheet" href="<?= base_url() ?>assets/dist/css/skins/_all-skins.min.css">
-  <link rel="stylesheet" href="<?= base_url() ?>assets/bower_components/morris.js/morris.css">
-  <link rel="stylesheet" href="<?= base_url() ?>assets/bower_components/jvectormap/jquery-jvectormap.css">
-  <link rel="stylesheet" href="<?= base_url() ?>assets/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
-  <link rel="stylesheet" href="<?= base_url() ?>assets/bower_components/bootstrap-daterangepicker/daterangepicker.css">
-  <link rel="stylesheet" href="<?= base_url() ?>assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
-  <link rel="stylesheet" href="<?= base_url() ?>assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
-  <link rel="icon" href="<?= base_url() ?>assets/dist/img/icon.png">
-  <!-- Google Font -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-  <!-- jQuery 3 -->
-  <script src="<?= base_url() ?>assets/bower_components/jquery/dist/jquery.min.js"></script>
-  
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Link Of CSS -->
+    <link rel="stylesheet" href="<?= base_url() ?>assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?= base_url() ?>assets/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="<?= base_url() ?>assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="<?= base_url() ?>assets/css/animate.min.css">
+    <link rel="stylesheet" href="<?= base_url() ?>assets/css/remixicon.css">
+    <link rel="stylesheet" href="<?= base_url() ?>assets/css/boxicons.min.css">
+    <link rel="stylesheet" href="<?= base_url() ?>assets/css/iconsax.css">
+    <link rel="stylesheet" href="<?= base_url() ?>assets/css/metismenu.min.css">
+    <link rel="stylesheet" href="<?= base_url() ?>assets/css/simplebar.min.css">
+    <link rel="stylesheet" href="<?= base_url() ?>assets/css/calendar.css">
+    <link rel="stylesheet" href="<?= base_url() ?>assets/css/sweetalert2.min.css">
+    <link rel="stylesheet" href="<?= base_url() ?>assets/css/jbox.all.min.css">
+    <link rel="stylesheet" href="<?= base_url() ?>assets/css/editor.css">
+    <link rel="stylesheet" href="<?= base_url() ?>assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="<?= base_url() ?>assets/css/loaders.css">
+    <link rel="stylesheet" href="<?= base_url() ?>assets/css/header.css">
+    <link rel="stylesheet" href="<?= base_url() ?>assets/css/sidebar-menu.css">
+    <link rel="stylesheet" href="<?= base_url() ?>assets/css/footer.css">
+    <link rel="stylesheet" href="<?= base_url() ?>assets/css/style.css">
+    <link rel="stylesheet" href="<?= base_url() ?>assets/css/responsive.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="<?= base_url() ?>assets/images/favicon.svg">
+    <!-- Title -->
+    <title>Joxi - Admin Dashboard Bootstrap 5 Template</title>
 </head>
 
-<body class="hold-transition skin-blue-light sidebar-mini">
-  <div class="wrapper">
-
-    <header class="main-header">
-      <!-- Logo -->
-      <a href="<?= base_url() ?>dashboard" class="logo">
-        <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini"><b><img src="<?= base_url() ?>assets/dist/img/fishh.png" width="50" height="45"></b></span>
-        <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg"><b>Monitoring</b>Ikan</span>
-      </a>
-      <!-- Header Navbar: style can be found in header.less -->
-      <nav class="navbar navbar-static-top">
-        <!-- Sidebar toggle button-->
-        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-          <span class="sr-only">Toggle navigation</span>
-        </a>
-        <div class="navbar-custom-menu">
-          <ul class="nav navbar-nav">
-            <?php
-            $notif = $this->db->get_where('notifikasi', ['is_read' => 0])->result_array();
-            $notif_count = count($notif);
-            ?>
-            <!-- Notifications: style can be found in dropdown.less -->
-            <li class="dropdown notifications-menu">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <i class="fa fa-bell-o " style="font-size:17px;"></i>
-                <span class="label label-warning"><?= $notif_count; ?></span>
-              </a>
-              <ul class="dropdown-menu">
-                <li class="header">Anda memiliki <?= $notif_count; ?> notifikasi</li>
-                <li>
-                  <!-- inner menu: contains the actual data -->
-                  <ul class="menu">
-                    <li>
-                      <?php foreach ($notif as $data) : ?>
-                        <a href="<?= base_url() ?>notifikasi">
-                          <i class="fa fa-warning text-yellow"></i> <?= $data['judul']; ?>
-                        </a>
-                      <?php endforeach; ?>
-                    </li>
-                  </ul>
-                </li>
-                <li class="footer"><a href="<?= base_url() ?>notifikasi">View all</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </nav>
-    </header>
-
-    <!-- Awal Menu  -->
-
-    <?php $this->load->view('V_menu'); ?>
-
-    <!-- Akhir Menu -->
-
-    <div class="content-wrapper">
-      <!-- Content Header (Page header) -->
-      <section class="content-header">
-        <h1>
-          <?= $judul; ?>
-        </h1>
-      </section>
-
-      <!-- Main content -->
-      <section class="content">
-        <?php $this->load->view($content); ?>
-      </section>
+<body class="body-bg-f8faff">
+    <!-- Start Preloader Area -->
+    <div class="preloader">
+        <img src="assets/dist/img/logo.png" alt="main-logo">
     </div>
-    <div class="control-sidebar-bg"></div>
-  </div>
-  <!-- jQuery UI 1.11.4 -->
-  <script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
-  <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-  <script>
-    $.widget.bridge('uibutton', $.ui.button);
-  </script>
-  <script src="<?= base_url() ?>assets/bower_components/select2/dist/js/select2.full.min.js"></script>
-  <script src="<?= base_url() ?>assets/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-  <script src="<?= base_url() ?>assets/bower_components/chart.js/Chart.js"></script>
-  <script src="<?= base_url() ?>assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-  <script src="<?= base_url() ?>assets/bower_components/raphael/raphael.min.js"></script>
-  <script src="<?= base_url() ?>assets/bower_components/morris.js/morris.min.js"></script>
-  <script src="<?= base_url() ?>assets/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
-  <script src="<?= base_url() ?>assets/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
-  <script src="<?= base_url() ?>assets/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
-  <script src="<?= base_url() ?>assets/bower_components/jquery-knob/dist/jquery.knob.min.js"></script>
-  <script src="<?= base_url() ?>assets/bower_components/moment/min/moment.min.js"></script>
-  <script src="<?= base_url() ?>assets/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
-  <script src="<?= base_url() ?>assets/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-  <script src="<?= base_url() ?>assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
-  <script src="<?= base_url() ?>assets/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-  <script src="<?= base_url() ?>assets/bower_components/fastclick/lib/fastclick.js"></script>
-  <script src="<?= base_url() ?>assets/dist/js/adminlte.min.js"></script>
-  <script src="<?= base_url() ?>assets/dist/js/pages/dashboard.js"></script>
-  <script src="<?= base_url() ?>assets/dist/js/demo.js"></script>
-  <script src="<?= base_url() ?>assets/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-  <script src="<?= base_url() ?>assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <!-- End Preloader Area -->
 
-  <script>
+    <!-- Start All Section Area -->
+    <div class="all-section-area">
+        <!-- Start Header Area -->
+        <div class="header-area">
+            <div class="container-fluid">
+                <div class="header-content-wrapper">
+                    <div class="header-content d-flex justify-content-between align-items-center">
+                        <div class="header-left-content d-flex">
+                            <div class="responsive-burger-menu d-block d-lg-none">
+                                <span class="top-bar"></span>
+                                <span class="middle-bar"></span>
+                                <span class="bottom-bar"></span>
+                            </div>
+
+                            <div class="main-logo">
+                                <a href="<?= base_url() ?>dashboard">
+                                    <img src="assets/dist/img/undip.png" alt="main-logo" width="50px" height="50px">
+                                </a>
+                            </div>
+
+                            
+
+                            
+                        </div>
+
+                        <div class="header-right-content d-flex align-items-center">
+                            
+
+                            <div class="header-right-option notification-option dropdown">
+                                <?php
+                                $notif = $this->db->get_where('notifikasi', ['is_read' => 0])->result_array();
+                                $notif_count = count($notif);
+                                ?>
+                                <div class="dropdown-item dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <div class="notification-btn">
+                                        <img src="assets/images/icon/notification.svg" alt="notification">
+                                        <span class="badge"><?= $notif_count; ?></span>
+                                    </div>
+                                </div>
+
+                                <div class="dropdown-menu">
+                                    <div class="dropdown-header d-flex justify-content-between align-items-center bg-linear">
+                                        <span class="title d-inline-block"><?= $notif_count?> New Notifications</span>
+                                        <span class="mark-all-btn d-inline-block">Mark all as read</span>
+                                    </div>
+
+                                    <div class="dropdown-wrap" data-simplebar>
+                                    <?php foreach($notif as $data) : ?>
+                                        <a href="<?= base_url() ?>notifikasi" class="dropdown-item d-flex align-items-center">
+                                            <div class="icon">
+                                                <i class='bx bx-comment-dots'></i>
+                                            </div>
+
+                                            <div class="content">
+                                                <span class="d-block"><?= $data['judul'];?></span>
+                                            </div>
+                                        </a>
+                                    <?php endforeach; ?>
+                                    </div>
+
+                                    <div class="dropdown-footer">
+                                        <a href="<?= base_url() ?>notifikasi" class="dropdown-item">View All</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="header-right-option dropdown profile-nav-item pt-0 pb-0">
+                                <a class="dropdown-item dropdown-toggle avatar d-flex align-items-center" href="<?= base_url() ?>#" id="navbarDropdown-4" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="assets/images/avatar.png" alt="avatar">
+                                    <div class="d-none d-lg-block d-md-block">
+                                        <h3>Farrel</h3>
+                                        <span>Super Admin</span>
+                                    </div>
+                                </a>
+
+                                <div class="dropdown-menu">
+                                    <div class="dropdown-header d-flex flex-column align-items-center">
+                                        <div class="figure mb-3">
+                                            <img src="assets/images/avatar.png" class="rounded-circle" alt="avatar">
+                                        </div>
+
+                                        <div class="info text-center">
+                                            <span class="name">Admin</span>
+                                            <p class="mb-3 email">
+                                                <a href="<?= base_url() ?>mailto:johnsmilga@hello.com">johnsmilga@hello.com</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown-footer">
+                                        <ul class="profile-nav">
+                                            <li class="nav-item">
+                                                <a href="<?= base_url() ?>login/logout" class="nav-link">
+                                                    <i class="ri-login-circle-line"></i>
+                                                    <span>Logout</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="header-right-option template-option">
+                                <a class="dropdown-item" href="<?= base_url() ?>#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                                    <img src="assets/images/icon/setting.svg" alt="setting">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Header Area -->
+
+        <!-- Start Sidebar Menu Area -->
+        <nav class="sidebar-menu">
+            <ul class="list-group flex-column d-inline-block first-menu" data-simplebar>
+                <li class="list-group-item main-grid active">
+                    <a href="<?= base_url() ?>dashboard" class="icon">
+                        <img src="assets/images/icon/element.svg" alt="element">
+                    </a>
+                </li>
+
+                <li class="list-group-item main-grid">
+                    <a href="<?= base_url() ?>rekap" class="icon">
+                        <img src="assets/images/icon/calendar.svg" alt="calendar">
+                    </a>
+                </li>
+
+                <li class="list-group-item main-grid">
+                    <a href="<?= base_url() ?>sensor" class="icon">
+                        <img src="assets/images/icon/messages.svg" alt="messages">
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!-- End Sidebar Menu Area -->
+
+        <!-- Start Main Content Area -->
+        <main class="main-content-wrap">
+
+            <!-- Start Features Area -->
+            <div class="features-area">
+                <div class="container-fluid">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-4 col-md-6">
+                            <div class="single-features">
+                                <div class="row align-items-center">
+                                    <div class="col-xl-6 col-sm-6">
+                                        <div class="single-click-content">
+                                            <span class="features-title">CLICK THROUGH</span>
+                                            <h3>9,670 <span>-0.21%</span></h3>
+                                            <p>Lorem ipsum dolor sit amet, conset etur sadipscing elitr, sed.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-6 col-sm-6">
+                                        <div class="single-click-chart">
+                                            <div id="click_chart"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6">
+                            <div class="single-features color-style-1765fd">
+                                <div class="row align-items-center">
+                                    <div class="col-xl-6 col-sm-6">
+                                        <div class="single-click-content">
+                                            <span class="features-title">VIEW THROUGH</span>
+                                            <h3>5,952 <span>+0.21%</span></h3>
+                                            <p>Lorem ipsum dolor sit amet, conset etur sadipscing elitr, sed.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-6 col-sm-6">
+                                        <div class="single-click-chart">
+                                            <div id="view_chart"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6">
+                            <div class="single-features color-style-5c31d6">
+                                <div class="row align-items-center">
+                                    <div class="col-xl-6 col-sm-6">
+                                        <div class="single-click-content">
+                                            <span class="features-title">TOTAL CONVERSIONS</span>
+                                            <h3>10,302 <span>+0.21%</span></h3>
+                                            <p>Lorem ipsum dolor sit amet, conset etur sadipscing elitr, sed.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-6 col-sm-6">
+                                        <div class="single-click-chart">
+                                            <div id="conversions_chart"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Features Area -->
+
+            <!-- Start Overview Area -->
+            <div class="overview-area">
+                <div class="container-fluid">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <div class="overview-content-wrap card-box-style">
+                                <div class="overview-content d-flex justify-content-between align-items-center">
+                                    <div class="overview-title">
+                                        <h3>Audience Overview</h3>
+                                        <span>1 July, 2021 - 14 July, 2021</span>
+                                    </div>
+
+                                    <ul class="total-overview">
+                                        <li>
+                                            <button class="today">Today</button>
+                                        </li>
+                                        <li>
+                                            <button>7d</button>
+                                        </li>
+                                        <li>
+                                            <button class="active">2w</button>
+                                        </li>
+                                        <li>
+                                            <button>1m</button>
+                                        </li>
+                                        <li>
+                                            <button>3m</button>
+                                        </li>
+                                        <li>
+                                            <button>1y</button>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="audience-content-wrap">
+                                    <div class="row justify-content-center">
+                                        <div class="col-lg-3 col-sm-6">
+                                            <div class="single-audience d-flex justify-content-between align-items-center">
+                                                <div class="audience-content">
+                                                    <h5>New Users</h5>
+                                                    <h4>19,202 <span>+55%</span></h4>
+                                                </div>
+                                                <div class="icon">
+                                                    <img src="assets/images/icon/white-profile-2user.svg" alt="white-profile-2user">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-3 col-sm-6">
+                                            <div class="single-audience d-flex justify-content-between align-items-center">
+                                                <div class="audience-content">
+                                                    <h5>Page Views</h5>
+                                                    <h4>21,202 <span>+32%</span></h4>
+                                                </div>
+                                                <div class="icon">
+                                                    <img src="assets/images/icon/eye.svg" alt="eye">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-3 col-sm-6">
+                                            <div class="single-audience d-flex justify-content-between align-items-center">
+                                                <div class="audience-content">
+                                                    <h5>Page Sessions</h5>
+                                                    <h4>15,251 <span>+23%</span></h4>
+                                                </div>
+                                                <div class="icon">
+                                                    <img src="assets/images/icon/timer.svg" alt="timer">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-3 col-sm-6">
+                                            <div class="single-audience d-flex justify-content-between align-items-center">
+                                                <div class="audience-content color-style-fe5957">
+                                                    <h5>Bounce Rate</h5>
+                                                    <h4>21,202 <span>-15%</span></h4>
+                                                </div>
+                                                <div class="icon">
+                                                    <img src="assets/images/icon/mask.svg" alt="mask">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="audience-chart">
+                                        <div id="overview_chart"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <div class="traffic-content card-box-style">
+                                <div class="main-title d-flex justify-content-between align-items-center">
+                                    <h3>Traffic Channel</h3>
+
+                                    <select class="form-select form-control" aria-label="Default select example">
+                                        <option selected>15 days</option>
+                                        <option value="1">16 days</option>
+                                        <option value="2">17 days</option>
+                                        <option value="3">18 days</option>
+                                    </select>
+                                </div>
+
+                                <div class="traffic-chart text-center">
+                                    <div id="traffic_chart"></div>
+                                </div>
+
+                                <div class="row justify-content-center">
+                                    <div class="col-xxl-3 col-md-3 col-sm-3">
+                                        <div class="single-traffic">
+                                            <span class="title">Organic Search</span>
+                                            <h4>19,202 <span>+32.50%</span></h4>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xxl-3 col-md-3 col-sm-3">
+                                        <div class="single-traffic border-style-5c31d6">
+                                            <span class="title">Social Media</span>
+                                            <h4>15,202 <span>+32.50%</span></h4>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xxl-3 col-md-3 col-sm-3">
+                                        <div class="single-traffic border-style-4fcb8d">
+                                            <span class="title">Email</span>
+                                            <h4>502 <span>+2%</span></h4>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xxl-3 col-md-3 col-sm-3">
+                                        <div class="single-traffic border-style-fec107">
+                                            <span class="title">Referrals</span>
+                                            <h4>1,202 <span>+32.50%</span></h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Overview Area -->
+
+            <!-- Start Device Website Area -->
+            <div class="device-website-area">
+                <div class="container-fluid">
+                    <div class="row justify-content-center">
+                        <div class="col-xxl-7">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-6">
+                                    <div class="device-content card-box-style">
+                                        <div class="main-title d-flex justify-content-between align-items-center">
+                                            <h3>Device Sessions</h3>
+
+                                            <select class="form-select form-control" aria-label="Default select example">
+                                                <option selected>30 days</option>
+                                                <option value="1">15 days</option>
+                                                <option value="2">10 days</option>
+                                                <option value="3">5 days</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="device-chart text-center">
+                                            <div id="device_chart"></div>
+                                        </div>
+
+                                        <div class="row justify-content-center">
+                                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                                <div class="single-device">
+                                                    <span class="title">Mobile</span>
+                                                    <h4>32,590 <span>+2%</span></h4>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                                <div class="single-device border-style-4fcb8d">
+                                                    <span class="title">Desktop</span>
+                                                    <h4>19,202 <span>+32.50%</span></h4>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                                <div class="single-device border-style-fec107">
+                                                    <span class="title">Tablet</span>
+                                                    <h4>1,202 <span>+32.50%</span></h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="device-content website card-box-style">
+                                        <div class="main-title d-flex justify-content-between align-items-center">
+                                            <h3>Website Performance</h3>
+
+                                            <select class="form-select form-control" aria-label="Default select example">
+                                                <option selected>30 days</option>
+                                                <option value="1">15 days</option>
+                                                <option value="2">10 days</option>
+                                                <option value="3">5 days</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="row justify-content-center">
+                                            <div class="col-lg-12 col-sm-6">
+                                                <div class="single-website-performance d-flex justify-content-between align-items-center">
+                                                    <div class="website-performance-content">
+                                                        <h5>Bounce Rate (avg)</h5>
+                                                        <h4>24.67% <span>+04.18%</span></h4>
+                                                    </div>
+                                                    <div class="website-chart">
+                                                        <div id="bounce_rate"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12 col-sm-6">
+                                                <div class="single-website-performance d-flex justify-content-between align-items-center">
+                                                    <div class="website-performance-content color-style-fe5957">
+                                                        <h5>Page Views (avg)</h5>
+                                                        <h4>7.32% <span>-0.21%</span></h4>
+                                                    </div>
+                                                    <div class="website-chart">
+                                                        <div id="page_views"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12 col-sm-6">
+                                                <div class="single-website-performance d-flex justify-content-between align-items-center">
+                                                    <div class="website-performance-content">
+                                                        <h5>Time On Site (avg)</h5>
+                                                        <h4>1min 30s <span>+2.50%</span></h4>
+                                                    </div>
+                                                    <div class="website-chart">
+                                                        <div id="time_on_site"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xxl-5">
+                            <div class="website-up-down card-box-style">
+                                <div class="main-title d-flex justify-content-between align-items-center">
+                                    <h3>Website Performance</h3>
+
+                                    <select class="form-select form-control" aria-label="Default select example">
+                                        <option selected>30 days</option>
+                                        <option value="1">15 days</option>
+                                        <option value="2">10 days</option>
+                                        <option value="3">5 days</option>
+                                    </select>
+                                </div>
+
+                                <div class="row justify-content-center">
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <div class="single-up-and-down d-flex justify-content-between align-items-center">
+                                            <div class="up-and-down-content">
+                                                <h5>Monthly</h5>
+                                                <h4><span>+32%</span></h4>
+                                            </div>
+                                            <div class="total">
+                                                <h4 class="mb-0">7.32%</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <div class="single-up-and-down d-flex justify-content-between align-items-center">
+                                            <div class="up-and-down-content color-style-fe5957">
+                                                <h5>Weekly</h5>
+                                                <h4><span>-01.17%</span></h4>
+                                            </div>
+                                            <div class="total">
+                                                <h4 class="mb-0">7.32%</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <div class="single-up-and-down d-flex justify-content-between align-items-center mb-0">
+                                            <div class="up-and-down-content">
+                                                <h5>Today</h5>
+                                                <h4><span>+03.93%</span></h4>
+                                            </div>
+                                            <div class="total">
+                                                <h4 class="mb-0">7.32%</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="sessions-chart">
+                                    <div id="sessions_chart"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Device Website Area -->
+
+            <!-- Start Total Visits Area -->
+            <div class="total-visits-browse-area">
+                <div class="container-fluid">
+                    <div class="row justify-content-center">
+                        <div class="col-xxl-6">
+                            <div class="total-visits-content card-box-style">
+                                <div class="main-title d-flex justify-content-between align-items-center">
+                                    <h3>Total Visits</h3>
+
+                                    <select class="form-select form-control" aria-label="Default select example">
+                                        <option selected>30 days</option>
+                                        <option value="1">15 days</option>
+                                        <option value="2">10 days</option>
+                                        <option value="3">7 days</option>
+                                    </select>
+                                </div>
+
+                                <table class="table align-middle">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">LINK</th>
+                                            <th scope="col">PAGE TITLE</th>
+                                            <th scope="col">PERCENTAGE (%)</th>
+                                            <th scope="col" class="present">VALUE</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">
+                                                <a href="<?= base_url() ?>index.html">
+                                                    <img src="assets/images/icon/link.svg" alt="link">
+                                                </a>
+                                            </th>
+                                            <td>
+                                                <span>Homepage</span>
+                                            </td>
+                                            <td>
+                                                <div class="progress">
+                                                    <div class="progress-bar" role="progressbar" aria-label="Example with label" style="width: 65.35%;" aria-valuenow="65.35" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                            </td>
+                                            <td class="present">
+                                                <span>65.35%</span>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <th scope="row">
+                                                <a href="<?= base_url() ?>index.html">
+                                                    <img src="assets/images/icon/link.svg" alt="link">
+                                                </a>
+                                            </th>
+                                            <td>
+                                                <span>Our Services</span>
+                                            </td>
+                                            <td>
+                                                <div class="progress services">
+                                                    <div class="progress-bar" role="progressbar" aria-label="Example with label" style="width: 40.25%;" aria-valuenow="40.25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                            </td>
+                                            <td class="present">
+                                                <span>40.25%</span>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <th scope="row">
+                                                <a href="<?= base_url() ?>index.html">
+                                                    <img src="assets/images/icon/link.svg" alt="link">
+                                                </a>
+                                            </th>
+                                            <td>
+                                                <span>List of Products</span>
+                                            </td>
+                                            <td>
+                                                <div class="progress products">
+                                                    <div class="progress-bar" role="progressbar" aria-label="Example with label" style="width: 25.15%;" aria-valuenow="25.15" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                            </td>
+                                            <td class="present">
+                                                <span>25.15%</span>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <th scope="row">
+                                                <a href="<?= base_url() ?>index.html">
+                                                    <img src="assets/images/icon/link.svg" alt="link">
+                                                </a>
+                                            </th>
+                                            <td>
+                                                <span>Blog</span>
+                                            </td>
+                                            <td>
+                                                <div class="progress blog">
+                                                    <div class="progress-bar" role="progressbar" aria-label="Example with label" style="width: 80.95%;" aria-valuenow="80.95" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                            </td>
+                                            <td class="present">
+                                                <span>80.95%</span>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <th scope="row">
+                                                <a href="<?= base_url() ?>index.html">
+                                                    <img src="assets/images/icon/link.svg" alt="link">
+                                                </a>
+                                            </th>
+                                            <td>
+                                                <span>Contact Us</span>
+                                            </td>
+                                            <td>
+                                                <div class="progress contact">
+                                                    <div class="progress-bar" role="progressbar" aria-label="Example with label" style="width: 42.35%;" aria-valuenow="42.35" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                            </td>
+                                            <td class="present">
+                                                <span>42.35%</span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="col-xxl-6">
+                            <div class="total-browse-content card-box-style">
+                                <div class="main-title d-flex justify-content-between align-items-center">
+                                    <h3>Browser Used By Users</h3>
+
+                                    <select class="form-select form-control" aria-label="Default select example">
+                                        <option selected>30 days</option>
+                                        <option value="1">15 days</option>
+                                        <option value="2">10 days</option>
+                                        <option value="3">7 days</option>
+                                    </select>
+                                </div>
+
+                                <table class="table align-middle">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">BROWSER</th>
+                                            <th scope="col">SESSIONS</th>
+                                            <th scope="col">BOUNCE RATE</th>
+                                            <th scope="col">CONVERSION RATE</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">
+                                                <a href="<?= base_url() ?>index.html">
+                                                    <img src="assets/images/apps/chrome.svg" alt="chrome">
+                                                    <span class="ms-2">Google Chrome</span>
+                                                </a>
+                                            </th>
+                                            <td>
+                                                <span>13,410</span>
+                                            </td>
+                                            <td>
+                                                <span>65.35%</span>
+                                            </td>
+                                            <td>
+                                                <span>12.32%</span>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <th scope="row">
+                                                <a href="<?= base_url() ?>index.html">
+                                                    <img src="assets/images/apps/mozilla.svg" alt="mozilla">
+                                                    <span class="ms-2">Mozilla Firefox</span>
+                                                </a>
+                                            </th>
+                                            <td>
+                                                <span>14,530</span>
+                                            </td>
+                                            <td>
+                                                <span>40.25%</span>
+                                            </td>
+                                            <td>
+                                                <span>19.59%</span>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <th scope="row">
+                                                <a href="<?= base_url() ?>index.html">
+                                                    <img src="assets/images/apps/safari.svg" alt="safari">
+                                                    <span class="ms-2">Apple Safari</span>
+                                                </a>
+                                            </th>
+                                            <td>
+                                                <span>2,515</span>
+                                            </td>
+                                            <td>
+                                                <span>25.15%</span>
+                                            </td>
+                                            <td>
+                                                <span>11.42%</span>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <th scope="row">
+                                                <a href="<?= base_url() ?>index.html">
+                                                    <img src="assets/images/apps/edge.svg" alt="edge">
+                                                    <span class="ms-2">Microsoft Edge</span>
+                                                </a>
+                                            </th>
+                                            <td>
+                                                <span>1095</span>
+                                            </td>
+                                            <td>
+                                                <span>80.95%</span>
+                                            </td>
+                                            <td>
+                                                <span>13.31%</span>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <th scope="row">
+                                                <a href="<?= base_url() ?>index.html">
+                                                    <img src="assets/images/apps/opera.svg" alt="opera">
+                                                    <span class="ms-2">Opera</span>
+                                                </a>
+                                            </th>
+                                            <td>
+                                                <span>235</span>
+                                            </td>
+                                            <td>
+                                                <span>42.35%</span>
+                                            </td>
+                                            <td>
+                                                <span>2.35%</span>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <th scope="row">
+                                                <a href="<?= base_url() ?>index.html">
+                                                    <img src="assets/images/apps/uc-browser.svg" alt="uc-browser">
+                                                    <span class="ms-2">UC Browser</span>
+                                                </a>
+                                            </th>
+                                            <td>
+                                                <span>132</span>
+                                            </td>
+                                            <td>
+                                                <span>42.35%</span>
+                                            </td>
+                                            <td>
+                                                <span>12.21%</span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Total Visits Area -->
+
+            <!-- Start Footer Area -->
+            <div class="footer-area">
+                <div class="container-fluid">
+                    <div class="footer-content">
+                        <p>© Joxi is Proudly Owned by <a href="<?= base_url() ?>https://envytheme.com/" target="_blank">EnvyTheme</a></p>
+                    </div>
+                </div>
+            </div>
+            <!-- End Footer Area -->
+
+        </main>
+        <!-- End Main Content Area -->
+    </div>
+    <!-- End All Section Area -->
+
+    <!-- Start Template Sidebar Area -->
+    <div class="template-sidebar-area">
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight">
+            <div class="offcanvas-header">
+                <a href="<?= base_url() ?>index.html">
+                    <img src="assets/images/main-logo.svg" alt="main-logo">
+                </a>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <ul>
+                    <li>
+                        <a class="default-btn btn active" target="_blank" href="<?= base_url() ?>#">
+                            Buy Now
+                        </a>
+                    </li>
+                    <li>
+                        <a class="default-btn btn" target="_blank" href="<?= base_url() ?>https://themeforest.net/user/envytheme/portfolio">
+                            Our Portfolio
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- End Template Sidebar Area -->
+
+    <!-- Start Go Top Area -->
+    <div class="go-top">
+        <i class="ri-arrow-up-s-fill"></i>
+        <i class="ri-arrow-up-s-fill"></i>
+    </div>
+    <!-- End Go Top Area -->
+<!-- chart -->
+<script>
     $(function() {
       $('.select2').select2()
     });
@@ -351,6 +1091,21 @@
       areaChart4.Line(areaChartData4, areaChartOptions4)
     })
   </script>
+  <!-- end chart -->
+    <!-- Jquery Min JS -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/owl.carousel.min.js"></script>
+    <script src="assets/js/metismenu.min.js"></script>
+    <script src="assets/js/simplebar.min.js"></script>
+    <script src="assets/js/apexcharts/apexcharts.min.js"></script>
+    <script src="assets/js/apexcharts/website-analytics.js"></script>
+    <script src="assets/js/geticons.js"></script>
+    <script src="assets/js/calendar.js"></script>
+    <script src="assets/js/editor.js"></script>
+    <script src="assets/js/form-validator.min.js"></script>
+    <script src="assets/js/contact-form-script.js"></script>
+    <script src="assets/js/ajaxchimp.min.js"></script>
+    <script src="assets/js/custom.js"></script>
 </body>
-
 </html>
