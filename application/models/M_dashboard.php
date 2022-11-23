@@ -9,7 +9,7 @@ class M_dashboard extends CI_Model
 
     public function graph()
     {
-        $data = $this->db->query("SELECT * FROM data_sensor ORDER BY data_sensor.tanggal DESC LIMIT 20");
+        $data = $this->db->query("SELECT * FROM data_sensor ORDER BY id DESC LIMIT 20");
         return $data->result();
     }
 

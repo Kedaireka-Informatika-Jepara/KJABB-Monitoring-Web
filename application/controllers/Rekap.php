@@ -50,7 +50,7 @@ class Rekap extends CI_Controller
         }
 
         $isi['content'] = 'rekap/V_rekap';
-        $isi['judul'] = 'Rekap Data Sensor';
+        $isi['judul'] = 'Monitoring | Rekap Data Sensor';
         $isi['rekap'] = $rekap;
         $isi['label'] = $label;
         $isi['export'] = $url_export;

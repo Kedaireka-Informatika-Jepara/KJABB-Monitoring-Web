@@ -14,9 +14,7 @@ class Dashboard extends CI_Controller
 	{
 		$this->M_squrity->getSqurity();
 		$isi['content'] = 'V_home';
-		$isi['judul'] = 'Dashboard';
-
-
+		$isi['judul'] = 'Monitoring | Dashboard';
 		// dashboard
 		$isi['sensor'] = $this->M_dashboard->curSensor();
 		$isi['graph'] = $this->M_dashboard->graph();

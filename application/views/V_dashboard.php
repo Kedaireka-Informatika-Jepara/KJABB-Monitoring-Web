@@ -31,7 +31,7 @@
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="<?= base_url() ?>assets/images/favicon.svg">
     <!-- Title -->
-    <title>Monitoring | Dashboard</title>
+    <title><?= $judul?></title>
 </head>
 
 <body class="body-bg-f8faff">
@@ -57,7 +57,7 @@
 
                             <div class="main-logo">
                                 <a href="<?= base_url() ?>dashboard">
-                                    <img src="assets/dist/img/undip.png" alt="main-logo" width="50px" height="50px">
+                                    <img src="<?= base_url() ?>assets/dist/img/undip.png" alt="main-logo" width="50px" height="50px">
                                 </a>
                             </div>
                             
@@ -73,7 +73,7 @@
                                 ?>
                                 <div class="dropdown-item dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <div class="notification-btn">
-                                        <img src="assets/images/icon/notification.svg" alt="notification">
+                                        <img src="<?= base_url() ?>assets/images/icon/notification.svg" alt="notification">
                                         <span class="badge"><?= $notif_count; ?></span>
                                     </div>
                                 </div>
@@ -106,7 +106,7 @@
 
                             <div class="header-right-option dropdown profile-nav-item pt-0 pb-0">
                                 <a class="dropdown-item dropdown-toggle avatar d-flex align-items-center" href="<?= base_url() ?>#" id="navbarDropdown-4" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="assets/images/avatar.png" alt="avatar">
+                                    <img src="<?= base_url() ?>assets/images/avatar.png" alt="avatar">
                                     <div class="d-none d-lg-block d-md-block">
                                         <h3>
                                           <!-- name user -->
@@ -122,7 +122,7 @@
                                 <div class="dropdown-menu">
                                     <div class="dropdown-header d-flex flex-column align-items-center">
                                         <div class="figure mb-3">
-                                            <img src="assets/images/avatar.png" class="rounded-circle" alt="avatar">
+                                            <img src="<?= base_url() ?>assets/images/avatar.png" class="rounded-circle" alt="avatar">
                                         </div>
 
                                         <div class="info text-center">
@@ -155,19 +155,19 @@
             <ul class="list-group flex-column d-inline-block first-menu" data-simplebar>
                 <li class="list-group-item main-grid <?php if(uri_string() == 'dashboard')echo 'active'?>">
                     <a href="<?= base_url() ?>dashboard" class="icon">
-                        <img src="assets/images/icon/element.svg" alt="element">
+                        <img src="<?= base_url() ?>assets/images/icon/element.svg" alt="element">
                     </a>
                 </li>
 
                 <li class="list-group-item main-grid <?php if(uri_string() == 'rekap')echo 'active'?>">
                     <a href="<?= base_url() ?>rekap" class="icon">
-                        <img src="assets/images/icon/calendar.svg" alt="calendar">
+                        <img src="<?= base_url() ?>assets/images/icon/calendar.svg" alt="calendar">
                     </a>
                 </li>
 
-                <li class="list-group-item main-grid <?php if(uri_string() == 'sensor')echo 'active'?>" >
+                <li class="list-group-item main-grid <?php if(preg_match('/sensor/',uri_string()))echo 'active'?>" >
                     <a href="<?= base_url() ?>sensor" class="icon">
-                        <img src="assets/images/icon/messages.svg" alt="messages">
+                        <img src="<?= base_url() ?>assets/images/icon/messages.svg" alt="messages">
                     </a>
                 </li>
             </ul>
@@ -193,246 +193,194 @@
         <i class="ri-arrow-up-s-fill"></i>
     </div>
     <!-- End Go Top Area -->
-<!-- chart -->
-<script>
-    $(function() {
-      $('.select2').select2()
-    });
-  </script>
 
-  <script>
-    $(function() {
-      $('#datepicker').datepicker({
-        autoclose: true
-      })
-    });
-  </script>
-
-  <script>
-    $(function() {
-      $('#example1').DataTable()
-      $('#example2').DataTable({
-        'paging': true,
-        'lengthChange': false,
-        'searching': false,
-        'ordering': true,
-        'info': true,
-        'autoWidth': false
-      })
-    })
-  </script>
-
-  <script>
-    $(function() {
-      /* ChartJS
-       * -------
-       * Here we will create a few charts using ChartJS
-       */
-
-      //--------------
-      //- AREA CHART -
-      //--------------
-
-      // Get context with jQuery - using jQuery's .get() method.
-      var areaChartCanvas = $('#areaChart').get(0).getContext('2d')
-      // This will get the first returned node in the jQuery collection.
-      var areaChart = new Chart(areaChartCanvas)
-
-      var areaChartData = {
-        labels: [<?php
-                  if (count($graph) > 0) {
-                    foreach ($graph as $row) {
-                      echo "'" . $row->waktu . "',";
-                    }
-                  }
-                  ?>],
-        datasets: [{
-          label: 'Digital Goods',
-          fillColor: 'rgba(60,141,188,0.9)',
-          strokeColor: 'rgba(60,141,188,0.8)',
-          pointColor: '#3b8bba',
-          pointStrokeColor: 'rgba(60,141,188,1)',
-          pointHighlightFill: '#fff',
-          pointHighlightStroke: 'rgba(60,141,188,1)',
-          data: [<?php
-                  if (count($graph) > 0) {
-                    foreach ($graph as $row) {
-                      echo $row->relay . ", ";
-                    }
-                  }
-                  ?>]
-        }]
-      }
-
-      var areaChartOptions = {
-        //Boolean - If we should show the scale at all
-        showScale: true,
-        //Boolean - Whether grid lines are shown across the chart
-        scaleShowGridLines: false,
-        //String - Colour of the grid lines
-        scaleGridLineColor: 'rgba(0,0,0,.05)',
-        //Number - Width of the grid lines
-        scaleGridLineWidth: 1,
-        //Boolean - Whether to show horizontal lines (except X axis)
-        scaleShowHorizontalLines: true,
-        //Boolean - Whether to show vertical lines (except Y axis)
-        scaleShowVerticalLines: true,
-        //Boolean - Whether the line is curved between points
-        bezierCurve: true,
-        //Number - Tension of the bezier curve between points
-        bezierCurveTension: 0.3,
-        //Boolean - Whether to show a dot for each point
-        pointDot: false,
-        //Number - Radius of each point dot in pixels
-        pointDotRadius: 4,
-        //Number - Pixel width of point dot stroke
-        pointDotStrokeWidth: 1,
-        //Number - amount extra to add to the radius to cater for hit detection outside the drawn point
-        pointHitDetectionRadius: 20,
-        //Boolean - Whether to show a stroke for datasets
-        datasetStroke: true,
-        //Number - Pixel width of dataset stroke
-        datasetStrokeWidth: 2,
-        //Boolean - Whether to fill the dataset with a color
-        datasetFill: true,
-        //String - A legend template
-        legendTemplate: '<ul class="<%=name.toLowerCase()%>-legend"><% for (var i=0; i<datasets.length; i++){%><li><span style="background-color:<%=datasets[i].lineColor%>"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>',
-        //Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
-        maintainAspectRatio: true,
-        //Boolean - whether to make the chart responsive to window resizing
-        responsive: true
-      }
-
-      //Create the line chart
-      areaChart.Line(areaChartData, areaChartOptions)
-
-      //----------------
-      //- AREA CHART 2 -
-      //----------------
-
-      // Get context with jQuery - using jQuery's .get() method.
-      var areaChartCanvas2 = $('#areaChart2').get(0).getContext('2d')
-      // This will get the first returned node in the jQuery collection.
-      var areaChart2 = new Chart(areaChartCanvas2)
-      var areaChartOptions2 = areaChartOptions
-
-      var areaChartData2 = {
-        labels: [<?php
-                  if (count($graph) > 0) {
-                    foreach ($graph as $row) {
-                      echo "'" . $row->waktu . "',";
-                    }
-                  }
-                  ?>],
-        datasets: [{
-          label: 'Digital Goods',
-          fillColor: '#5ac18e',
-          strokeColor: '#5ac18e',
-          pointColor: '#3b8bba',
-          pointStrokeColor: '#5ac18e',
-          pointHighlightFill: '#fff',
-          pointHighlightStroke: '#5ac18e',
-          data: [<?php
+    <!-- Jquery Min JS -->
+    <script src="<?= base_url() ?>assets/js/jquery.min.js"></script>
+    <script src="<?= base_url() ?>assets/js/bootstrap.bundle.min.js"></script>
+    <script src="<?= base_url() ?>assets/js/owl.carousel.min.js"></script>
+    <script src="<?= base_url() ?>assets/js/metismenu.min.js"></script>
+    <script src="<?= base_url() ?>assets/js/simplebar.min.js"></script>
+    <script src="<?= base_url() ?>assets/js/apexcharts/apexcharts.min.js"></script>
+    <script src="<?= base_url() ?>assets/js/geticons.js"></script>
+    <script src="<?= base_url() ?>assets/js/calendar.js"></script>
+    <script src="<?= base_url() ?>assets/js/editor.js"></script>
+    <script src="<?= base_url() ?>assets/js/form-validator.min.js"></script>
+    <script src="<?= base_url() ?>assets/js/contact-form-script.js"></script>
+    <script src="<?= base_url() ?>assets/js/ajaxchimp.min.js"></script>
+    <script src="<?= base_url() ?>assets/js/custom.js"></script>
+    <script>
+// Click Chart
+var options = {
+        series: [
+            { name: "Suhu Air", 
+                data: [<?php
                   if (count($graph) > 0) {
                     foreach ($graph as $row) {
                       echo $row->suhu . ", ";
                     }
                   }
-                  ?>]
-        }]
-      }
-      areaChart2.Line(areaChartData2, areaChartOptions2)
+                  ?>] 
+            }
+        ],
+        chart: { 
+            type: "area", 
+            height: 50, 
+            sparkline: { 
+                enabled: !0 
+            } 
+        },
+        stroke: { 
+            curve: "smooth", 
+            width: 4,
+            lineCap: "round" 
+        },
+        colors: [
+            "#4FCB8D"
+        ],
+        fill: { 
+            type: "gradient", 
+            gradient: { 
+                shadeIntensity: 0, 
+                inverseColors: !0, 
+                opacityFrom: 0, 
+                opacityTo: 0, 
+                stops: [
+                    75, 100, 100, 100
+                ] 
+            } 
+        },
+        tooltip: { 
+            fixed: { 
+                enabled: !1 
+            }, 
+            x: { 
+                show: !1 
+            }, 
+            marker: { 
+                show: !1 
+            } 
+        },
+    },
+    chart = new ApexCharts(
+        document.querySelector("#suhu_chart"), 
+        options
+    );
+    chart.render();
 
-      //----------------
-      //- AREA CHART 3 -
-      //----------------
-
-      // Get context with jQuery - using jQuery's .get() method.
-      var areaChartCanvas3 = $('#areaChart3').get(0).getContext('2d')
-      // This will get the first returned node in the jQuery collection.
-      var areaChart3 = new Chart(areaChartCanvas3)
-      var areaChartOptions3 = areaChartOptions
-
-      var areaChartData3 = {
-        labels: [<?php
-                  if (count($graph) > 0) {
-                    foreach ($graph as $row) {
-                      echo "'" . $row->waktu . "',";
-                    }
-                  }
-                  ?>],
-        datasets: [{
-          label: 'Digital Goods',
-          fillColor: '#ffa500',
-          strokeColor: '#ffa500',
-          pointColor: '#3b8bba',
-          pointStrokeColor: 'rgba(60,141,188,1)',
-          pointHighlightFill: '#fff',
-          pointHighlightStroke: 'rgba(60,141,188,1)',
-          data: [<?php
-                  if (count($graph) > 0) {
+    var options = {
+        series: [
+            { name: "Amonia", 
+                data: [<?php
+                if (count($graph) > 0) {
                     foreach ($graph as $row) {
                       echo $row->amonia . ", ";
                     }
-                  }
-                  ?>]
-        }]
-      }
-      areaChart3.Line(areaChartData3, areaChartOptions3)
+                  }?>] 
+            }
+        ],
+        chart: { 
+            type: "area", 
+            height: 50, 
+            sparkline: { 
+                enabled: !0 
+            } 
+        },
+        stroke: { 
+            curve: "smooth", 
+            width: 4,
+            lineCap: "round" 
+        },
+        colors: [
+            "#1765FD"
+        ],
+        fill: { 
+            type: "gradient", 
+            gradient: { 
+                shadeIntensity: 0, 
+                inverseColors: !0, 
+                opacityFrom: 0, 
+                opacityTo: 0, 
+                stops: [
+                    75, 100, 100, 100
+                ] 
+            } 
+        },
+        tooltip: { 
+            fixed: { 
+                enabled: !1 
+            }, 
+            x: { 
+                show: !1 
+            }, 
+            marker: { 
+                show: !1 
+            } 
+        },
+    },
+    chart = new ApexCharts(
+        document.querySelector("#view_chart"), 
+        options
+    );
+    chart.render();
 
-      //----------------
-      //- AREA CHART 4 -
-      //----------------
-
-      // Get context with jQuery - using jQuery's .get() method.
-      var areaChartCanvas4 = $('#areaChart4').get(0).getContext('2d')
-      // This will get the first returned node in the jQuery collection.
-      var areaChart4 = new Chart(areaChartCanvas4)
-      var areaChartOptions4 = areaChartOptions
-
-      var areaChartData4 = {
-        labels: [<?php
-                  if (count($graph) > 0) {
-                    foreach ($graph as $row) {
-                      echo "'" . $row->waktu . "',";
-                    }
-                  }
-                  ?>],
-        datasets: [{
-          label: 'Digital Goods',
-          fillColor: '#ff0000',
-          strokeColor: '#ff0000',
-          pointColor: '#3b8bba',
-          pointStrokeColor: 'rgba(60,141,188,1)',
-          pointHighlightFill: '#fff',
-          pointHighlightStroke: 'rgba(60,141,188,1)',
-          data: [<?php
-                  if (count($graph) > 0) {
+    // Conversions Chart
+    var options = {
+        series: [
+            { name: "Curah Hujan", 
+                data: [<?php 
+                if (count($graph) > 0) {
                     foreach ($graph as $row) {
                       echo $row->curah_hujan . ", ";
                     }
-                  }
-                  ?>]
-        }]
-      }
-      areaChart4.Line(areaChartData4, areaChartOptions4)
-    })
-  </script>
-  <!-- end chart -->
-    <!-- Jquery Min JS -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/owl.carousel.min.js"></script>
-    <script src="assets/js/metismenu.min.js"></script>
-    <script src="assets/js/simplebar.min.js"></script>
-    <script src="assets/js/apexcharts/apexcharts.min.js"></script>
-    <script src="assets/js/apexcharts/website-analytics.js"></script>
-    <script src="assets/js/geticons.js"></script>
-    <script src="assets/js/calendar.js"></script>
-    <script src="assets/js/editor.js"></script>
-    <script src="assets/js/form-validator.min.js"></script>
-    <script src="assets/js/contact-form-script.js"></script>
-    <script src="assets/js/ajaxchimp.min.js"></script>
-    <script src="assets/js/custom.js"></script>
+                  }?>] 
+            }
+        ],
+        chart: { 
+            type: "area", 
+            height: 50, 
+            sparkline: { 
+                enabled: !0 
+            } 
+        },
+        stroke: { 
+            curve: "smooth", 
+            width: 4,
+            lineCap: "round" 
+        },
+        colors: [
+            "#5C31D6"
+        ],
+        fill: { 
+            type: "gradient", 
+            gradient: { 
+                shadeIntensity: 0, 
+                inverseColors: !0, 
+                opacityFrom: 0, 
+                opacityTo: 0, 
+                stops: [
+                    75, 100, 100, 100
+                ] 
+            } 
+        },
+        tooltip: { 
+            fixed: { 
+                enabled: !1 
+            }, 
+            x: { 
+                show: !1 
+            }, 
+            marker: { 
+                show: !1 
+            } 
+        },
+    },
+    chart = new ApexCharts(
+        document.querySelector("#conversions_chart"), 
+        options
+    );
+    chart.render();
+
+    </script>
+    
 </body>
 </html>

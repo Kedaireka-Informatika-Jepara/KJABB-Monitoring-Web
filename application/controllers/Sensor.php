@@ -13,7 +13,7 @@ class Sensor extends CI_Controller
     {
         $this->M_squrity->getSqurity();
         $isi['content'] = 'sensor/V_sensor';
-        $isi['judul'] = 'Daftar Data Batas Sensor';
+        $isi['judul'] = 'Monitoring | Daftar Data Batas Sensor';
         $isi['data'] = $this->db->get('sensor')->result();
         $this->load->view('V_dashboard', $isi);
     }
@@ -22,7 +22,7 @@ class Sensor extends CI_Controller
     public function edit($id)
     {
         $isi['content'] = 'sensor/Edit_sensor';
-        $isi['judul'] = 'Form Edit Batas Sensor';
+        $isi['judul'] = 'Monitoring | Form Edit Batas Sensor';
         $isi['data'] = $this->M_sensor->edit($id);
         $this->load->view('V_dashboard', $isi);
     }

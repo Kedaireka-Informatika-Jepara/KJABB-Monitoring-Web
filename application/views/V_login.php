@@ -7,7 +7,6 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Login Monitoring App</title>
   <!-- backgroud -->
-  <!-- <div style="background-image: url(<?php echo base_url('assets/dist/img/keramba.jpg'); ?>);background-size:cover"> -->
 
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <link rel="icon" href="<?= base_url() ?>assets/dist/img/icon.png">
@@ -43,7 +42,7 @@
   </style>
 </head>
 
-<body class="hold-transition login-page" style="background-image: url(<?php echo base_url('assets/dist/img/KJABB.jpeg'); ?>);background-size:cover">
+<body class="hold-transition login-page"  style="background-image: url(<?php echo base_url('assets/dist/img/KJABB.jpeg'); ?>);background-size:cover">
   <nav class="navbar navbar-default" role="navigation" style="height: 60px;">
     <ul style="position: absolute; width: 100%;left: 0; text-align: center; margin:0 auto; z-index:3; top: 7px;">
       <img src="<?php echo base_url('assets/dist/img/undip.png'); ?>" width="35px" height="35px" style="margin-right: 15px;">
@@ -58,7 +57,7 @@
     </ul>
   </nav>
 
-  <div class="account-content">
+  <div class="account-content mt-4">
     <div class="account-header">
       <a href="">
         <img src="assets/dist/img/kedaireka2.png" alt="main-logo">
