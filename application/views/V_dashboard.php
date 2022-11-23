@@ -170,6 +170,11 @@
                         <img src="<?= base_url() ?>assets/images/icon/messages.svg" alt="messages">
                     </a>
                 </li>
+                <li class="list-group-item main-grid <?php if(uri_string() == 'notifikasi')echo 'active'?>">
+                    <a href="<?= base_url() ?>notifikasi" class="icon">
+                        <img src="<?= base_url() ?>assets/images/icon/notification.svg" alt="notif">
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- End Sidebar Menu Area -->
