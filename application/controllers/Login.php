@@ -10,7 +10,13 @@ class Login extends CI_Controller{
 
 	public function index()
 	{
-		$this->load->view('V_login');
+		if($this->session->userdata('nama') != ''){
+			redirect('dashboard');
+		}
+		else{
+
+			$this->load->view('V_login');
+		}
 	}
 
 	public function proses_login()
