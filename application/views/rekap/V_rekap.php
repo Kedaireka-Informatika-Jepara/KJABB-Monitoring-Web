@@ -149,6 +149,8 @@ if (!empty($this->session->flashdata('info'))) { ?>
           <th>Suhu</th>
           <th>Amonia</th>
           <th>Curah Hujan</th>
+          <th>pH</th>
+          <th>DO</th>
           <th>Keadaan Relay</th>
         </tr>
       </thead>
@@ -161,6 +163,8 @@ if (!empty($this->session->flashdata('info'))) { ?>
             <td><?= $row->suhu; ?></td>
             <td><?= $row->amonia; ?></td>
             <td><?= $row->curah_hujan; ?></td>
+            <td><?= $row->ph; ?></td>
+            <td><?= $row->do; ?></td>
             <td><?php
                 if ($row->relay == 1) {
                   echo "<span class='label label-success'>ON</span>";

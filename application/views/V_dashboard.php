@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="<?= base_url() ?>assets/css/responsive.css">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="<?= base_url() ?>assets/images/favicon.svg">
+    <link rel="icon" href="<?= base_url() ?>assets/dist/img/icon.png">  
     <!-- Title -->
     <title><?= $judul?></title>
 </head>
@@ -323,7 +323,7 @@ var options = {
         },
     },
     chart = new ApexCharts(
-        document.querySelector("#view_chart"), 
+        document.querySelector("#amonia_chart"), 
         options
     );
     chart.render();
@@ -380,11 +380,122 @@ var options = {
         },
     },
     chart = new ApexCharts(
-        document.querySelector("#conversions_chart"), 
+        document.querySelector("#curah_chart"), 
         options
     );
     chart.render();
-
+    // Conversions Chart
+    var options = {
+        series: [
+            { name: "pH", 
+                data: [<?php 
+                if (count($graph) > 0) {
+                    foreach ($graph as $row) {
+                      echo $row->ph . ", ";
+                    }
+                  }?>] 
+            }
+        ],
+        chart: { 
+            type: "area", 
+            height: 50, 
+            sparkline: { 
+                enabled: !0 
+            } 
+        },
+        stroke: { 
+            curve: "smooth", 
+            width: 4,
+            lineCap: "round" 
+        },
+        colors: [
+            "#ff0000"
+        ],
+        fill: { 
+            type: "gradient", 
+            gradient: { 
+                shadeIntensity: 0, 
+                inverseColors: !0, 
+                opacityFrom: 0, 
+                opacityTo: 0, 
+                stops: [
+                    75, 100, 100, 100
+                ] 
+            } 
+        },
+        tooltip: { 
+            fixed: { 
+                enabled: !1 
+            }, 
+            x: { 
+                show: !1 
+            }, 
+            marker: { 
+                show: !1 
+            } 
+        },
+    },
+    chart = new ApexCharts(
+        document.querySelector("#ph_chart"), 
+        options
+    );
+    chart.render();
+    // DO
+    var options = {
+        series: [
+            { name: "DO", 
+                data: [<?php 
+                if (count($graph) > 0) {
+                    foreach ($graph as $row) {
+                      echo $row->do . ", ";
+                    }
+                  }?>] 
+            }
+        ],
+        chart: { 
+            type: "area", 
+            height: 50, 
+            sparkline: { 
+                enabled: !0 
+            } 
+        },
+        stroke: { 
+            curve: "smooth", 
+            width: 4,
+            lineCap: "round" 
+        },
+        colors: [
+            "#5C31D6"
+        ],
+        fill: { 
+            type: "gradient", 
+            gradient: { 
+                shadeIntensity: 0, 
+                inverseColors: !0, 
+                opacityFrom: 0, 
+                opacityTo: 0, 
+                stops: [
+                    75, 100, 100, 100
+                ] 
+            } 
+        },
+        tooltip: { 
+            fixed: { 
+                enabled: !1 
+            }, 
+            x: { 
+                show: !1 
+            }, 
+            marker: { 
+                show: !1 
+            } 
+        },
+    },
+    chart = new ApexCharts(
+        document.querySelector("#do_chart"), 
+        options
+    );
+    chart.render();
     </script>
     
 </body>
