@@ -36,9 +36,9 @@
 
 <body class="body-bg-f8faff">
     <!-- Start Preloader Area -->
-    <!-- <div class="preloader">
+    <div class="preloader">
         <img src="assets/dist/img/logo.png" alt="main-logo">
-    </div> -->
+    </div>
     <!-- End Preloader Area -->
 
     <!-- Start All Section Area -->
