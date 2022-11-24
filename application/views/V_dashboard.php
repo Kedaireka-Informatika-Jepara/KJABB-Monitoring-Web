@@ -115,7 +115,7 @@
                                           echo $user['nama'];
                                           ?>
                                         </h3>
-                                        <span><?=$user['idpetugas']?></span>
+                                        <span>ID : <?=$user['idpetugas']?></span>
                                     </div>
                                 </a>
 
@@ -127,7 +127,7 @@
 
                                         <div class="info text-center">
                                             <span class="name"><?=$user['nama']?></span>
-                                            <span><?=$user['idpetugas']?></span>
+                                            <span>ID : <?=$user['idpetugas']?></span>
                                         </div>
                                     </div>
                                     <div class="dropdown-footer">

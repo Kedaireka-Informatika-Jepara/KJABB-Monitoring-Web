@@ -181,7 +181,7 @@ if (!empty($this->session->flashdata('info'))) { ?>
   </table>
     </div></div></div>
     </div>
-    <a data-toggle="modal" data-target="#modalExport" name="export" id="export" class="btn btn-success"><i class="fa fa-print"></i> Cetak Data</a>
+    <a data-bs-toggle="modal" data-bs-target="#modalExport" name="export" id="export" class="btn btn-success"><i class="fa fa-print"></i> Cetak Data</a>
 </div>
 
 <form method="post" action="" id="pilih" name="pilih" class="form-group">
@@ -190,7 +190,7 @@ if (!empty($this->session->flashdata('info'))) { ?>
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLongTitle">Cetak Data</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -214,7 +214,7 @@ if (!empty($this->session->flashdata('info'))) { ?>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-success">Cetak Excel</button>
 
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
