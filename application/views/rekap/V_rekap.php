@@ -37,6 +37,15 @@
             }
         }
     }
+    function getCetak() {
+        var filter = document.forms["pilih"]["role"].value;
+        if(filter == 'pilih'){
+            document.getElementById('btn-cetak').disabled = true;
+        }
+        else{
+            document.getElementById('btn-cetak').disabled = false;
+        }
+    }
 </script>
 
 <?php
@@ -52,7 +61,7 @@ if (!empty($this->session->flashdata('info'))) { ?>
     </div>
     <div class="box-body">
         <!-- <table id="example1" class="table table-bordered table-striped"> -->
-        <form method="get" name="FormFilter" id="FormFilter" action="">
+        <form method="get" name="FormFilter" id="FormFilter">
             <div class="row">
                 <div class="col-sm-3 col-md-2">
                     <div class="form-group">
@@ -167,12 +176,12 @@ if (!empty($this->session->flashdata('info'))) { ?>
   </table>
     </div></div></div>
     </div>
-    <!-- <a data-bs-toggle="modal" data-bs-target="#modalExport" name="export" id="export" class="btn btn-success"><i class="fa fa-print"></i> Cetak Data</a> -->
-    <a href="<?= base_url() ?>rekap/export_data" name="export" id="export" class="btn btn-success"><i class="fa fa-print"></i> Cetak Data</a>
+    <a data-bs-toggle="modal" data-bs-target="#modalExport" name="export" id="export" class="btn btn-success"><i class="fa fa-print"></i> Cetak Data</a>
+    <!-- <a href="<?= base_url() ?>rekap/export_data" name="export" id="export" class="btn btn-success"><i class="fa fa-print"></i> Cetak Data</a> -->
 </div>
 
+<form method="post" action="" id="pilih" name="pilih" class="form-group">
 <div class="modal fade" id="modalExport" tabindex="-1" role="dialog" aria-labelledby="modalExportTitle" aria-hidden="true">
-        <form method="post" action="" id="pilih" name="pilih" class="form-group">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -187,22 +196,24 @@ if (!empty($this->session->flashdata('info'))) { ?>
                 <div class="row">
                     <label class="col-sm-3 control-label text-right">Pilih Data<span class="text-red">*</span></label>
                     <div class="col-sm-8">
-                        <select name="role" id="role" class="form-control" style="width: 100%;">
-                            <option disabled selected>Pilih Data</option>
+                        <select name="role" id="role" class="form-control" style="width: 100%;" onchange="getCetak()">
+                            <option disabled selected value="pilih">Pilih Data</option>
                             <option value="semua">Semua Data</option>
                             <option value="suhu">Suhu Air</option>
                             <option value="amonia">Amonia</option>
                             <option value="curah">Curah Hujan</option>
+                            <option value="ph">pH</option>
+                            <option value="do">Dissolve Oxygen</option>
                         </select>
                         <br>
                     </div>
                 </div>
 
                 <div class="modal-footer">
-                    <button type="submit" name="submit" class="btn btn-success">Cetak Excel</button>
+                    <button type="submit" disabled id="btn-cetak" name="submit" class="btn btn-success">Cetak Excel</button>
 
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
-        </form>
         </div>
+    </form>
