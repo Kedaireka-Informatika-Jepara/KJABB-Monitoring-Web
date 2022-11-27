@@ -59,24 +59,26 @@ class Rekap extends CI_Controller
         $isi['export_curah_hujan'] = $url_export4;
         $isi['option_tahun'] = $this->M_rekap->option_tahun();
         $this->load->view('V_dashboard', $isi);
-       
-    //cetak 
-        if(isset($_POST['role'])){
-            $cetak = $_POST['role'];
-            if($cetak == 'semua'){
-                redirect($url_export);
+
+        //cetak 
+        if (isset($_POST['submit'])) {
+            if (isset($_POST['role'])) {
+                $cetak = $_POST['role'];
+                if ($cetak == 'semua') {
+                    redirect($url_export);
+                }
+                if ($cetak == 'suhu') {
+                    redirect($url_export2);
+                }
+                if ($cetak == 'amonia') {
+                    redirect($url_export3);
+                }
+                if ($cetak == 'curah') {
+                    redirect($url_export4);
+                }
             }
-            if($cetak == 'suhu'){
-                redirect($url_export2);
-            }
-            if($cetak == 'amonia'){
-                redirect($url_export3);
-            }
-            if($cetak == 'curah'){
-                redirect($url_export4);
-            }
-        } 
-        // $_POST = array();
+            // $_POST = array();
+        }
     }
 
     public function export_data()
@@ -104,122 +106,38 @@ class Rekap extends CI_Controller
             $rekap = $this->M_rekap->view_all(); // Panggil fungsi view_all yang ada di TransaksiModel
         }
 
-        require(APPPATH . 'PHPExcel-1.8/Classes/PHPExcel.php');
-        require(APPPATH . 'PHPExcel-1.8/Classes/PHPExcel/Writer/Excel2007.php');
+        header('Content-Type: application/vnd.ms-excel');
+        header('Content-Disposition: attachment;filename="' . $label . '.xls"');
+        // echo tabel
+?>
+        <!-- table -->
 
-        $object = new PHPExcel();
-        // Buat sebuah variabel untuk menampung pengaturan style dari header tabel
-        $style_col = array(
-            'font' => array('bold' => true), // Set font nya jadi bold
-            'alignment' => array(
-                'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER, // Set text jadi ditengah secara horizontal (center)
-                'vertical' => PHPExcel_Style_Alignment::VERTICAL_CENTER // Set text jadi di tengah secara vertical (middle)
-            ),
-            'borders' => array(
-                'top' => array('style'  => PHPExcel_Style_Border::BORDER_THIN), // Set border top dengan garis tipis
-                'right' => array('style'  => PHPExcel_Style_Border::BORDER_THIN),  // Set border right dengan garis tipis
-                'bottom' => array('style'  => PHPExcel_Style_Border::BORDER_THIN), // Set border bottom dengan garis tipis
-                'left' => array('style'  => PHPExcel_Style_Border::BORDER_THIN) // Set border left dengan garis tipis
-            )
-        );
-        // Buat sebuah variabel untuk menampung pengaturan style dari isi tabel
-        $style_row = array(
-            'alignment' => array(
-                'vertical' => PHPExcel_Style_Alignment::VERTICAL_CENTER // Set text jadi di tengah secara vertical (middle)
-            ),
-            'borders' => array(
-                'top' => array('style'  => PHPExcel_Style_Border::BORDER_THIN), // Set border top dengan garis tipis
-                'right' => array('style'  => PHPExcel_Style_Border::BORDER_THIN),  // Set border right dengan garis tipis
-                'bottom' => array('style'  => PHPExcel_Style_Border::BORDER_THIN), // Set border bottom dengan garis tipis
-                'left' => array('style'  => PHPExcel_Style_Border::BORDER_THIN) // Set border left dengan garis tipis
-            )
-        );
-
-        $object->getProperties()->setCreator("Monitoring Ikan");
-        $object->getProperties()->setLastModifiedBy("Monitoring Ikan");
-        $object->getProperties()->setTitle("Rekap Data Sensor");
-        $object->getProperties()->setSubject("");
-        $object->getProperties()->setDescription("");
-
-        $object->setActiveSheetIndex(0)->setCellValue('C1', "DATA REKAP SENSOR"); // Set kolom E1 dengan tulisan "DATA SISWA"
-        $object->getActiveSheet()->mergeCells('C1:I1'); // Set Merge Cell pada kolom E1 sampai E1
-        $object->getActiveSheet()->getStyle('C1')->getFont()->setBold(TRUE); // Set bold kolom C1
-        $object->getActiveSheet()->getStyle('C1')->getFont()->setSize(15); // Set font size 15 untuk kolom C1
-        $object->getActiveSheet()->getStyle('C1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER); // Set text center untuk kolom E1
-
-        $object->setActiveSheetIndex(0)->setCellValue('C2', $label); // Set kolom C2 dengan tulisan "DATA SISWA"
-        $object->getActiveSheet()->mergeCells('C2:I2'); // Set Merge Cell pada kolom C2 sampai E2
-        $object->getActiveSheet()->getStyle('C2')->getFont()->setBold(TRUE); // Set bold kolom C2
-        $object->getActiveSheet()->getStyle('C2')->getFont()->setSize(15); // Set font size 15 untuk kolom C2
-        $object->getActiveSheet()->getStyle('C2')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER); // Set text center untuk kolom C2
-
-        $object->setActiveSheetIndex(0);
-        $object->getActiveSheet()->setCellValue('C4', 'No.');
-        $object->getActiveSheet()->setCellValue('D4', 'Waktu');
-        $object->getActiveSheet()->setCellValue('E4', 'Tanggal');
-        $object->getActiveSheet()->setCellValue('F4', 'Suhu');
-        $object->getActiveSheet()->setCellValue('G4', 'Amonia');
-        $object->getActiveSheet()->setCellValue('H4', 'Curah Hujan');
-        $object->getActiveSheet()->setCellValue('I4', 'Relay');
-
-        $object->getActiveSheet()->getStyle('C4')->applyFromArray($style_col);
-        $object->getActiveSheet()->getStyle('D4')->applyFromArray($style_col);
-        $object->getActiveSheet()->getStyle('E4')->applyFromArray($style_col);
-        $object->getActiveSheet()->getStyle('F4')->applyFromArray($style_col);
-        $object->getActiveSheet()->getStyle('G4')->applyFromArray($style_col);
-        $object->getActiveSheet()->getStyle('H4')->applyFromArray($style_col);
-        $object->getActiveSheet()->getStyle('I4')->applyFromArray($style_col);
-
-        $baris = 5;
-        $no = 1;
-
-        foreach ($rekap as $row) {
-            $object->getActiveSheet()->setCellValue('C' . $baris, $no++);
-            $object->getActiveSheet()->setCellValue('D' . $baris, $row->waktu);
-            $object->getActiveSheet()->setCellValue('E' . $baris, $row->tanggal);
-            $object->getActiveSheet()->setCellValue('F' . $baris, $row->suhu);
-            $object->getActiveSheet()->setCellValue('G' . $baris, $row->amonia);
-            $object->getActiveSheet()->setCellValue('H' . $baris, $row->curah_hujan);
-            $object->getActiveSheet()->setCellValue('I' . $baris, $row->relay);
-
-            // Apply style row yang telah kita buat tadi ke masing-masing baris (isi tabel)
-            $object->getActiveSheet()->getStyle('C' . $baris)->applyFromArray($style_row);
-            $object->getActiveSheet()->getStyle('D' . $baris)->applyFromArray($style_row);
-            $object->getActiveSheet()->getStyle('E' . $baris)->applyFromArray($style_row);
-            $object->getActiveSheet()->getStyle('F' . $baris)->applyFromArray($style_row);
-            $object->getActiveSheet()->getStyle('G' . $baris)->applyFromArray($style_row);
-            $object->getActiveSheet()->getStyle('H' . $baris)->applyFromArray($style_row);
-            $object->getActiveSheet()->getStyle('I' . $baris)->applyFromArray($style_row);
-
-            $baris++;
-        }
-
-        // Set width kolom
-        $object->getActiveSheet()->getColumnDimension('C')->setWidth(5); // Set width kolom A
-        $object->getActiveSheet()->getColumnDimension('D')->setWidth(15); // Set width kolom B
-        $object->getActiveSheet()->getColumnDimension('E')->setWidth(15); // Set width kolom C
-        $object->getActiveSheet()->getColumnDimension('F')->setWidth(15); // Set width kolom D
-        $object->getActiveSheet()->getColumnDimension('G')->setWidth(15); // Set width kolom E
-        $object->getActiveSheet()->getColumnDimension('H')->setWidth(15); // Set width kolom F
-        $object->getActiveSheet()->getColumnDimension('I')->setWidth(15); // Set width kolom G
-
-        // Set height semua kolom menjadi auto (mengikuti height isi dari kolommnya, jadi otomatis)
-        $object->getActiveSheet()->getDefaultRowDimension()->setRowHeight(-1);
-        // Set orientasi kertas jadi LANDSCAPE
-        $object->getActiveSheet()->getPageSetup()->setOrientation(PHPExcel_Worksheet_PageSetup::ORIENTATION_LANDSCAPE);
-
-        $filename = $label . '.xlsx';
-
-        $object->getActiveSheet()->setTitle("Data Rekap Sensor");
-
-        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-
-        header('Content-Disposition: attachment;filename="' . $filename . '"');
-        header('Cache-Control: max-age=0');
-
-        $writer = PHPExcel_IOFactory::createWriter($object, 'Excel2007');
-
-        $writer->save('php://output');
+        <table border="1" width="100%">
+            <tr>
+                <th>No</th>
+                <th>Tanggal</th>
+                <th>Waktu</th>
+                <th>Suhu</th>
+                <th>Amonia</th>
+                <th>Curah Hujan</th>
+            </tr>
+            <?php
+            $no = 1;
+            foreach ($rekap as $row) {
+            ?>
+                <tr>
+                    <td><?php echo $no++; ?></td>
+                    <td><?php echo $row->tanggal; ?></td>
+                    <td><?php echo $row->waktu; ?></td>
+                    <td><?php echo $row->suhu; ?></td>
+                    <td><?php echo $row->amonia; ?></td>
+                    <td><?php echo $row->curah_hujan; ?></td>
+                </tr>
+            <?php
+            }
+            ?>
+        </table>
+<?php
         exit;
     }
 
@@ -505,7 +423,7 @@ class Rekap extends CI_Controller
             $label = 'Semua Data Rekap Sensor Curah Hujan';
             $rekap = $this->M_rekap->view_all(); // Panggil fungsi view_all yang ada di TransaksiModel
         }
-        
+
 
         require(APPPATH . 'PHPExcel-1.8/Classes/PHPExcel.php');
         require(APPPATH . 'PHPExcel-1.8/Classes/PHPExcel/Writer/Excel2007.php');
