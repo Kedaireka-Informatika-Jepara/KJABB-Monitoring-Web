@@ -6,14 +6,14 @@ if (!empty($this->session->flashdata('info'))) { ?>
 ?>
 
 <br>
-
+<div class="device-content website card-box-style">
 <div class="box">
     <div class="box-header">
         <h3 class="box-title">Data Input Batas Sensor</h3>
     </div>
     <!-- /.box-header -->
     <div class="box-body">
-        <table id="example1" class="table table-bordered table-striped">
+        <table id="sensorData" class="table table-bordered table-striped">
             <thead>
                 <tr>
                     <th>ID Sensor</th>
@@ -41,4 +41,5 @@ if (!empty($this->session->flashdata('info'))) { ?>
             </tbody>
         </table>
     </div>
+</div>
 </div>

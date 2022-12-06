@@ -14,7 +14,7 @@ class Login extends CI_Controller{
 			redirect('dashboard');
 		}
 		else{
-
+			$isi['judul'] = 'Monitoring | Dashboard';
 			$this->load->view('V_login');
 		}
 	}

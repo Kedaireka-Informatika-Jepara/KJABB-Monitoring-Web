@@ -6,7 +6,7 @@ if (!empty($this->session->flashdata('info'))) { ?>
 ?>
 
 <br>
-
+<div class="total-browse-content card-box-style">
 <div class="box">
     <div class="box-header">
         <h3 class="box-title">Data Notifikasi</h3>
@@ -49,6 +49,7 @@ if (!empty($this->session->flashdata('info'))) { ?>
             </tbody>
         </table>
     </div>
+</div>
 </div>
 <!-- Modal -->
 <?php foreach ($data as $row) { ?>
