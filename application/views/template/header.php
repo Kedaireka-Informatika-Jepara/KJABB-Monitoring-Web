@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Link Of CSS -->
-    <link rel="stylesheet" href="<?= base_url() ?>assets/css/bootstrap.min.css">
+
+    <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?= base_url() ?>assets/css/owl.theme.default.min.css">
     <link rel="stylesheet" href="<?= base_url() ?>assets/css/owl.carousel.min.css">
     <link rel="stylesheet" href="<?= base_url() ?>assets/css/animate.min.css">
@@ -27,8 +28,9 @@
     <link rel="stylesheet" href="<?= base_url() ?>assets/css/footer.css">
     <link rel="stylesheet" href="<?= base_url() ?>assets/css/style.css">
     <link rel="stylesheet" href="<?= base_url() ?>assets/css/responsive.css">
-    <link rel="stylesheet" href="<?= base_url() ?>assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/datatable/datatables.min.css">
 
+    
     <!-- Favicon -->
     <link rel="icon" href="<?= base_url() ?>assets/dist/img/icon.png">  
     <!-- Title -->

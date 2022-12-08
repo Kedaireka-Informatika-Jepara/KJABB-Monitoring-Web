@@ -195,7 +195,7 @@ if (!empty($this->session->flashdata('info'))) { ?>
                 <div class="modal-body">
                     <b>Silahkan pilih data sensor yang akan dicetak</b> <br>
                 </div>
-                <div class="row">
+                <div class="row p-3">
                     <label class="col-sm-3 control-label text-right">Pilih Data<span class="text-red">*</span></label>
                     <div class="col-sm-8">
                         <select name="role" id="role" class="form-control" style="width: 100%;" onchange="getCetak()">

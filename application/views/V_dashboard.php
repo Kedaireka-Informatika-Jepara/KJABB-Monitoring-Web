@@ -1,11 +1,13 @@
 <?php $this->load->view('template/header'); ?>
 
 <body class="body-bg-f8faff">
+    
     <!-- Start Preloader Area -->
     <div class="preloader">
         <img src="assets/dist/img/logo.png" alt="main-logo">
     </div>
     <!-- End Preloader Area -->
+
 
     <!-- Start All Section Area -->
     <div class="all-section-area">
@@ -178,8 +180,7 @@
     <script src="<?= base_url() ?>assets/js/contact-form-script.js"></script>
     <script src="<?= base_url() ?>assets/js/ajaxchimp.min.js"></script>
     <script src="<?= base_url() ?>assets/js/custom.js"></script>
-    <script src="<?= base_url() ?>assets/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-    <script src="<?= base_url() ?>assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script type="text/javascript" src="<?= base_url() ?>assets/datatable/datatables.min.js"></script>
 
     <script>
         $(function() {
