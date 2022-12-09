@@ -101,7 +101,7 @@
                                     <div class="dropdown-footer">
                                         <ul class="profile-nav">
                                             <li class="nav-item">
-                                                <a href="<?= base_url() ?>login/logout" class="nav-link">
+                                                <a data-bs-toggle="modal" data-bs-target="#exampleModalCenter"" class="nav-link">
                                                     <i class="ri-login-circle-line"></i>
                                                     <span>Logout</span>
                                                 </a>
@@ -165,7 +165,25 @@
         <i class="ri-arrow-up-s-fill"></i>
     </div>
     <!-- End Go Top Area -->
-
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Logout</h5>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+         <b> Apakah anda yakin ingin keluar?</b>
+        </div>
+        <div class="modal-footer">
+          <a type="button" class="btn btn-primary" href="<?= base_url() ?>login/logout">Logout</a>
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
     <!-- Jquery Min JS -->
     <script src="<?= base_url() ?>assets/js/jquery.min.js"></script>
     <script src="<?= base_url() ?>assets/js/bootstrap.bundle.min.js"></script>
@@ -184,16 +202,11 @@
 
     <script>
         $(function() {
-            $('#example1').DataTable()
-            $('#sensorData').DataTable({
-                'paging': false,
-                'lengthChange': false,
-                'searching': true,
-                'ordering': true,
-                'info': true,
-                'autoWidth': false,
-                'responsive': true
-            })
+            $('#dataRekap').DataTable({
+                order: [[0, 'desc']]
+            });
+            $('#dataSensor').DataTable();
+
         })
     </script>
 </body>
