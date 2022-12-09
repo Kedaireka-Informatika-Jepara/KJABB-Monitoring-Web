@@ -137,11 +137,11 @@ if (!empty($this->session->flashdata('info'))) { ?>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-                <table id="example1" class="table align-middle table-bordered table-striped">
+                <table id="dataRekap" class="table align-middle table-bordered table-striped">
                     <thead>
                         <tr>
-                            <th>Waktu</th>
                             <th>Tanggal</th>
+                            <th>Waktu</th>
                             <th>Suhu</th>
                             <th>Amonia</th>
                             <th>Curah Hujan</th>
@@ -154,8 +154,8 @@ if (!empty($this->session->flashdata('info'))) { ?>
                         <?php
                         foreach ($rekap as $row) { ?>
                             <tr>
-                                <td><?= $row->waktu; ?></td>
                                 <td><?= $row->tanggal; ?></td>
+                                <td><?= $row->waktu; ?></td>
                                 <td><?= $row->suhu; ?></td>
                                 <td><?= $row->amonia; ?></td>
                                 <td><?= $row->curah_hujan; ?></td>
