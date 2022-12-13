@@ -206,6 +206,7 @@
                 order: [[0, 'desc']]
             });
             $('#dataSensor').DataTable();
+            $('#dataNotif').DataTable();
 
         })
     </script>
