@@ -10,8 +10,7 @@ class Data extends RestController{
 		$this->load->model('M_dashboard');
 	}
     public function index_get(){
-        $isi['sensor'] = $this->M_dashboard->curSensor();
-		$isi['graph'] = $this->M_dashboard->graph();
+		$isi['sensor'] = $this->db->get('sensor')->result();
 		$isi['data'] = $this->db->get('data_sensor')->result();
         $this->response($isi,200);
     }
