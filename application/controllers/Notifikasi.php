@@ -14,7 +14,7 @@ class Notifikasi extends CI_Controller
         $this->M_squrity->getSqurity();
         $isi['content'] = 'notifikasi/V_notifikasi';
         $isi['judul'] = 'Daftar Notifikasi';
-        $isi['data'] = $this->db->get('notifikasi')->result();
+        $isi['data'] = $this->M_notifikasi->getNotif();
         $this->load->view('V_dashboard', $isi);
     }
 

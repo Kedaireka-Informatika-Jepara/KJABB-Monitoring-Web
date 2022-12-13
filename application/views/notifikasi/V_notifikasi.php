@@ -13,7 +13,7 @@ if (!empty($this->session->flashdata('info'))) { ?>
     </div>
     <!-- /.box-header -->
     <div class="box-body">
-        <table id="example1" class="table table-bordered table-striped">
+        <table id="dataNotif" class="table table-bordered table-striped">
             <thead>
                 <tr>
                     <th>Tanggal</th>
