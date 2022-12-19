@@ -49,7 +49,7 @@
                                 <div class="dropdown-menu">
                                     <div class="dropdown-header d-flex justify-content-between align-items-center bg-linear">
                                         <span class="title d-inline-block"><?= $notif_count ?> New Notifications</span>
-                                        <span class="mark-all-btn d-inline-block">Mark all as read</span>
+                                        <a href="<?= base_url()?>notifikasi/tandaisemua" class="mark-all-btn text-white d-inline-block">Mark all as read</a>
                                     </div>
 
                                     <div class="dropdown-wrap" data-simplebar>
@@ -203,10 +203,14 @@
     <script>
         $(function() {
             $('#dataRekap').DataTable({
-                order: [[0, 'desc']]
+                order: []
             });
-            $('#dataSensor').DataTable();
-            $('#dataNotif').DataTable();
+            $('#dataSensor').DataTable({
+                order: []
+            });
+            $('#dataNotif').DataTable({
+                order: []
+            });
 
         })
     </script>

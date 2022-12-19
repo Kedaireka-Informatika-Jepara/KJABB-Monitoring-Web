@@ -36,4 +36,19 @@ class Notifikasi extends CI_Controller
             redirect('notifikasi');
         }
     }
+
+    public function tandaisemua()
+    {
+        $data = [
+            'is_read' => 1
+        ];
+        $this->db->update('notifikasi', $data);
+        $this->session->set_flashdata('info', 'Semua Notifikasi Sudah Dibaca');
+        redirect('notifikasi');
+    }
+    public function hapussemua(){
+        $this->db->empty_table('notifikasi');
+        $this->session->set_flashdata('info', 'Semua Notifikasi Berhasil Dihapus');
+        redirect('notifikasi');
+    }
 }
