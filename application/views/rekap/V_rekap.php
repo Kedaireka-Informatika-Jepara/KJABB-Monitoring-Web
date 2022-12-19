@@ -161,7 +161,7 @@ if (!empty($this->session->flashdata('info'))) { ?>
                                 <td><?= $row->curah_hujan; ?></td>
                                 <td><?= $row->ph; ?></td>
                                 <td><?= $row->do; ?></td>
-                                <td><?php $row->turbidity ?>
+                                <td><?= $row->turbidity ?>
                                 </td>
                             </tr>
 
