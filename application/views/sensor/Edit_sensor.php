@@ -24,14 +24,14 @@
                 <div class="form-group">
                     <label for="inputPassword3" class="col-sm-2 control-label">Batas Bawah</label>
                     <div class="col-sm-10">
-                        <input type="text" name="batas_bawah" value="<?= $data['batas_bawah']; ?>" class="form-control" placeholder="Batas Bawah" required>
+                        <input type="number" name="batas_bawah" value="<?= $data['batas_bawah']; ?>" class="form-control" placeholder="Batas Bawah" required>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="inputPassword3" class="col-sm-2 control-label">Batas Atas</label>
                     <div class="col-sm-10">
-                        <input type="text" name="batas_atas" value="<?= $data['batas_atas']; ?>" class="form-control" placeholder="Batas Atas" required>
+                        <input type="number" name="batas_atas" value="<?= $data['batas_atas']; ?>" class="form-control" placeholder="Batas Atas" required>
                     </div>
                 </div>
             </div>
