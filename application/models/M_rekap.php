@@ -9,24 +9,25 @@ class M_rekap extends CI_Model
 
         public function view_by_date($date){
               $this->db->where('tanggal', $date); // Tambahkan where tanggal nya
-              
+              $this->db->order_by('id', 'DESC');    
           return $this->db->get('data_sensor')->result();// Tampilkan data transaksi sesuai tanggal yang diinput oleh user pada filter
         }
           
         public function view_by_month($month, $year){
               $this->db->where('MONTH(tanggal)', $month); // Tambahkan where bulan
               $this->db->where('YEAR(tanggal)', $year); // Tambahkan where tahun
-              
+              $this->db->order_by('id', 'DESC');
           return $this->db->get('data_sensor')->result(); // Tampilkan data transaksi sesuai bulan dan tahun yang diinput oleh user pada filter
         }
           
         public function view_by_year($year){
               $this->db->where('YEAR(tanggal)', $year); // Tambahkan where tahun
-              
+              $this->db->order_by('id', 'DESC');
           return $this->db->get('data_sensor')->result(); // Tampilkan data transaksi sesuai tahun yang diinput oleh user pada filter
         }
           
         public function view_all(){
+          $this->db->order_by('id', 'DESC');
           return $this->db->get('data_sensor')->result(); // Tampilkan semua data transaksi
         }
           
