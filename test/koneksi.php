@@ -20,7 +20,6 @@ $t = date("H:i:s");
 $temp = $_POST["suhu"];
 $ph = $_POST["ph"];
 $turbidity = $_POST["turbidity"];
-
 $amonia = $_POST["gas"];
 $raindrop = $_POST["raindrop"];
 // $cobasuhu = 40;
@@ -38,8 +37,8 @@ $sql = "INSERT INTO data_sensor (tanggal, suhu, amonia, curah_hujan,ph, do, turb
         echo "Error: " . $sql . "<br>" . $conn->error;
         }
 
-$sql3 = "SELECT * FROM sensor";
-if ($result = $conn->query($sql3)) {
+$sqlsensor = "SELECT * FROM sensor";
+if ($result = $conn->query($sqlsensor)) {
         while ($row = $result->fetch_assoc()) {
             $id = $row["id_sensor"];
             $nama = $row["nama_sensor"];
@@ -47,59 +46,59 @@ if ($result = $conn->query($sql3)) {
             $batas_atas = $row["batas_atas"];
             
             if($nama == "Suhu" && (($temp > $batas_atas)||($temp < $batas_bawah))){
-            $sql2 = "INSERT INTO notifikasi (tanggal_notif, waktu_notif, judul, pesan) VALUES ('" . $d . "', '" . $t . "', 'Suhu air melewati batas normal', 'suhu air mencapai ". $temp ." *C')";
-		        if ($conn->query($sql2) === TRUE) {
+            $sqlsuhu = "INSERT INTO notifikasi (tanggal_notif, waktu_notif, judul, pesan) VALUES ('" . $d . "', '" . $t . "', 'Suhu air melewati batas normal', 'suhu air mencapai ". $temp ." *C')";
+		        if ($conn->query($sqlsuhu) === TRUE) {
 		            echo "OK";
 		        } else {
-                    echo "Error: " . $sql2 . "<br>" . $conn->error;
+                    echo "Error: " . $sqlsuhu . "<br>" . $conn->error;
                 }
             }
             if($nama == "ph" && (($ph > $batas_atas)||($ph < $batas_bawah))){
-            $sql3 = "INSERT INTO notifikasi (tanggal_notif, waktu_notif, judul, pesan) VALUES ('" . $d . "', '" . $t . "', 'pH melewati batas normal', 'pH mencapai ". $ph ."')";
-		        if ($conn->query($sql3) === TRUE) {
+            $sqlph = "INSERT INTO notifikasi (tanggal_notif, waktu_notif, judul, pesan) VALUES ('" . $d . "', '" . $t . "', 'pH melewati batas normal', 'pH mencapai ". $ph ."')";
+		        if ($conn->query($sqlph) === TRUE) {
 		            echo "OK";
 		        } else {
-                    echo "Error: " . $sql3 . "<br>" . $conn->error;
+                    echo "Error: " . $sqlph . "<br>" . $conn->error;
                 }
             }
             if($nama == "Dissolved Oxygen" && (($cobado > $batas_atas)||($cobado < $batas_bawah))){
-                $sql6 = "INSERT INTO notifikasi (tanggal_notif, waktu_notif, judul, pesan) VALUES ('" . $d . "', '" . $t . "', 'Dissolve Oxygen melewati batas normal', 'dissolve oxygen mencapai ". $cobado ."')";
-                    if ($conn->query($sql6) === TRUE) {
+                $sqldo = "INSERT INTO notifikasi (tanggal_notif, waktu_notif, judul, pesan) VALUES ('" . $d . "', '" . $t . "', 'Dissolve Oxygen melewati batas normal', 'dissolve oxygen mencapai ". $cobado ."')";
+                    if ($conn->query($sqldo) === TRUE) {
                         echo "OK";
                     } else {
-                        echo "Error: " . $sql6 . "<br>" . $conn->error;
+                        echo "Error: " . $sqldo . "<br>" . $conn->error;
                     }
                 }
             if($nama == "Amonia" && (($amonia > $batas_atas)||($amonia < $batas_bawah))){
-            $sql4 = "INSERT INTO notifikasi (tanggal_notif, waktu_notif, judul, pesan) VALUES ('" . $d . "', '" . $t . "', 'Kadar amonia melewati batas normal', 'kadar amonia mencapai ". $amonia ." ppm')";
-		        if ($conn->query($sql4) === TRUE) {
+            $sqlamonia = "INSERT INTO notifikasi (tanggal_notif, waktu_notif, judul, pesan) VALUES ('" . $d . "', '" . $t . "', 'Kadar amonia melewati batas normal', 'kadar amonia mencapai ". $amonia ." ppm')";
+		        if ($conn->query($sqlamonia) === TRUE) {
 		            echo "OK";
 		        } else {
-                    echo "Error: " . $sql4 . "<br>" . $conn->error;
+                    echo "Error: " . $sqlamonia . "<br>" . $conn->error;
                 }
             }
             if($nama == "Turbidity" && (($turbidity > $batas_atas)||($turbidity < $batas_bawah))){
-                $sql7 = "INSERT INTO notifikasi (tanggal_notif, waktu_notif, judul, pesan) VALUES ('" . $d . "', '" . $t . "', 'Kadar amonia melewati batas normal', 'kadar amonia mencapai ". $turbidity ." ppm')";
-                    if ($conn->query($sql4) === TRUE) {
+                $sqlturbidity = "INSERT INTO notifikasi (tanggal_notif, waktu_notif, judul, pesan) VALUES ('" . $d . "', '" . $t . "', 'Kadar amonia melewati batas normal', 'kadar amonia mencapai ". $turbidity ." ppm')";
+                    if ($conn->query($sqlturbidity) === TRUE) {
                         echo "OK";
                     } else {
-                        echo "Error: " . $sql4 . "<br>" . $conn->error;
+                        echo "Error: " . $sqlturbidity . "<br>" . $conn->error;
                     }
                 }
             
             if($raindrop < 600){
-            $sql5 = "INSERT INTO notifikasi (tanggal_notif, waktu_notif, judul, pesan) VALUES ('" . $d . "', '" . $t . "', 'Terjadi Hujan Deras', 'Hujan dengan intensitas tinggi terjadi di sekitar keramba')";
-		        if ($conn->query($sql5) === TRUE) {
+            $sqlraindrop = "INSERT INTO notifikasi (tanggal_notif, waktu_notif, judul, pesan) VALUES ('" . $d . "', '" . $t . "', 'Terjadi Hujan Deras', 'Hujan dengan intensitas tinggi terjadi di sekitar keramba')";
+		        if ($conn->query($sqlraindrop) === TRUE) {
 		            echo "OK";
 		        } else {
-                    echo "Error: " . $sql5 . "<br>" . $conn->error;
+                    echo "Error: " . $sqlraindrop . "<br>" . $conn->error;
                 }
             } else if ($raindrop < 900 && $raindrop >= 600){
-                $sql5 = "INSERT INTO notifikasi (tanggal_notif, waktu_notif, judul, pesan) VALUES ('" . $d . "', '" . $t . "', 'Terjadi Hujan Ringan', 'Hujan dengan intensitas rendah terjadi di sekitar keramba')";
-		        if ($conn->query($sql5) === TRUE) {
+                $sqlraindrop = "INSERT INTO notifikasi (tanggal_notif, waktu_notif, judul, pesan) VALUES ('" . $d . "', '" . $t . "', 'Terjadi Hujan Ringan', 'Hujan dengan intensitas rendah terjadi di sekitar keramba')";
+		        if ($conn->query($sqlraindrop) === TRUE) {
 		            echo "OK";
 		        } else {
-                    echo "Error: " . $sql5 . "<br>" . $conn->error;
+                    echo "Error: " . $sqlraindrop . "<br>" . $conn->error;
                 }
             }
         }
