@@ -1,6 +1,86 @@
 <div class="features-area">
   <div class="container-fluid">
-    <div class="row justify-content-center">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="card-box-style">
+          <div class="single-click-content">
+            <span class="features-title text-success">Suhu Air</span>
+            <h3><?php foreach ($sensor as $row) {
+                  echo $row->suhu;
+                } ?>°C</h3>
+          </div>
+          <div id="suhu_chart"></div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="card-box-style">
+          <div class="single-click-content">
+            <span class="features-title text-primary">Amonia</span>
+            <h3><?php foreach ($sensor as $row) {
+                  echo $row->amonia;
+                } ?>PPM</h3>
+          </div>
+          <div id="amonia_chart"></div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="card-box-style">
+          <div class="single-click-content">
+            <span class="features-title text-info">Curah Hujan</span>
+            <h3><?php
+                    if ($row->curah_hujan < 600) {
+                      echo "Hujan Deras";
+                    } else if ($row->curah_hujan < 800 && $row->curah_hujan >= 600) {
+                      echo "Hujan Ringan";
+                    } else {
+                      echo "Tidak Hujan";
+                    }
+                    ?></h3>
+          </div>
+          <div id="curah_chart"></div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="card-box-style">
+          <div class="single-click-content">
+            <span class="features-title">pH</span>
+            <h3><?php foreach ($sensor as $row) {
+                  echo $row->ph;
+                } ?></h3>
+          </div>
+          <div id="ph_chart"></div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="card-box-style">
+          <div class="single-click-content">
+            <span class="features-title">Dissolved Oxygen</span>
+            <h3><?php
+                    foreach ($sensor as $row) {
+                      echo $row->do;
+                    }
+                    ?></h3>
+          </div>
+          <div id="do_chart"></div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="card-box-style">
+          <div class="single-click-content">
+            <span class="features-title">Kekeruhan Air</span>
+            <h3><?php foreach ($sensor as $row) {
+                  echo $row->turbidity;
+                } ?> NTU</h3>
+          </div>
+          <div id="turbidity_chart"></div>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="row justify-content-center">
       <div class="col-lg-4 col-md-6">
         <div class="single-features">
           <div class="row align-items-center">
@@ -15,7 +95,7 @@
 
             <div class="col-xl-6 col-sm-6">
               <div class="single-click-chart">
-                <div id="suhu_chart"></div>
+
               </div>
             </div>
           </div>
@@ -119,10 +199,10 @@
             <div class="col-xl-6 col-sm-6">
               <div class="single-click-content">
                 <span class="features-title">Kekeruhan Air</span>
-                <h3><?php foreach($sensor as $row){
+                <h3><?php foreach ($sensor as $row) {
                       echo $row->turbidity;
                     } ?> NTU</h3>
-                    
+
               </div>
             </div>
 
@@ -134,8 +214,8 @@
           </div>
         </div>
       </div>
-    </div>
-                    
+    </div> -->
+
   </div>
 </div>
 <!-- chart -->
@@ -151,57 +231,49 @@
     })
   });
 </script>
-<script src="<?= base_url()?>assets/js/apexcharts/apexcharts.min.js"></script>
+<script src="<?= base_url() ?>assets/js/apexcharts/apexcharts.min.js"></script>
 <script>
   // Click Chart
   var options = {
-      series: [{
-        name: "Suhu Air",
-        data: [<?php
-                if (count($graph) > 0) {
-                  foreach ($graph as $row) {
-                    echo $row->suhu . ", ";
-                  }
-                }
-                ?>]
-      }],
       chart: {
-        type: "area",
-        height: 50,
-        sparkline: {
-          enabled: !0
+        height: 200,
+        type: 'area',
+        zoom: {
+          enabled: false
         }
+      },
+      dataLabels: {
+        enabled: false
       },
       stroke: {
-        curve: "smooth",
-        width: 4,
-        lineCap: "round"
+        curve: 'straight'
       },
       colors: [
-        "#4FCB8D"
+        "#00c300"
       ],
-      fill: {
-        type: "gradient",
-        gradient: {
-          shadeIntensity: 0,
-          inverseColors: !0,
-          opacityFrom: 0,
-          opacityTo: 0,
-          stops: [
-            75, 100, 100, 100
-          ]
-        }
+      series: [{
+        name: "Suhu",
+        data: [<?php
+                if (count($graph) > 0) {
+                  foreach (array_reverse($graph) as $row) {
+                    echo $row->suhu . ", ";
+                  }
+                } ?>]
+      }],
+      labels: [<?php
+                if (count($graph) > 0) {
+                  foreach ($graph as $row) {
+                    echo '"' . $row->waktu . '",';
+                  }
+                }
+                ?>],
+
+      legend: {
+        horizontalAlign: 'left'
       },
-      tooltip: {
-        fixed: {
-          enabled: !1
-        },
-        x: {
-          show: !1
-        },
-        marker: {
-          show: !1
-        }
+      grid: {
+        show: true,
+        borderColor: '#f6f6f7',
       },
     },
     chart = new ApexCharts(
@@ -210,53 +282,47 @@
     );
   chart.render();
 
+  
   var options = {
+      chart: {
+        height: 200,
+        type: 'area',
+        zoom: {
+          enabled: false
+        }
+      },
+      dataLabels: {
+        enabled: false
+      },
+      stroke: {
+        curve: 'straight'
+      },
+      colors: [
+        "#0000ff"
+      ],
       series: [{
         name: "Amonia",
         data: [<?php
                 if (count($graph) > 0) {
-                  foreach ($graph as $row) {
+                  foreach (array_reverse($graph) as $row) {
                     echo $row->amonia . ", ";
                   }
                 } ?>]
       }],
-      chart: {
-        type: "area",
-        height: 50,
-        sparkline: {
-          enabled: !0
-        }
+      labels: [<?php
+                if (count($graph) > 0) {
+                  foreach ($graph as $row) {
+                    echo '"' . $row->waktu . '",';
+                  }
+                }
+                ?>],
+
+      legend: {
+        horizontalAlign: 'left'
       },
-      stroke: {
-        curve: "smooth",
-        width: 4,
-        lineCap: "round"
-      },
-      colors: [
-        "#1765FD"
-      ],
-      fill: {
-        type: "gradient",
-        gradient: {
-          shadeIntensity: 0,
-          inverseColors: !0,
-          opacityFrom: 0,
-          opacityTo: 0,
-          stops: [
-            75, 100, 100, 100
-          ]
-        }
-      },
-      tooltip: {
-        fixed: {
-          enabled: !1
-        },
-        x: {
-          show: !1
-        },
-        marker: {
-          show: !1
-        }
+      grid: {
+        show: true,
+        borderColor: '#f6f6f7',
       },
     },
     chart = new ApexCharts(
@@ -264,55 +330,47 @@
       options
     );
   chart.render();
-
-  // Conversions Chart
+  // Curah Hujan Chart
   var options = {
+      chart: {
+        height: 200,
+        type: 'area',
+        zoom: {
+          enabled: false
+        }
+      },
+      dataLabels: {
+        enabled: false
+      },
+      stroke: {
+        curve: 'straight'
+      },
+      colors: [
+        "#0000ff"
+      ],
       series: [{
         name: "Curah Hujan",
         data: [<?php
                 if (count($graph) > 0) {
-                  foreach ($graph as $row) {
+                  foreach (array_reverse($graph) as $row) {
                     echo $row->curah_hujan . ", ";
                   }
                 } ?>]
       }],
-      chart: {
-        type: "area",
-        height: 50,
-        sparkline: {
-          enabled: !0
-        }
+      labels: [<?php
+                if (count($graph) > 0) {
+                  foreach ($graph as $row) {
+                    echo '"' . $row->waktu . '",';
+                  }
+                }
+                ?>],
+
+      legend: {
+        horizontalAlign: 'left'
       },
-      stroke: {
-        curve: "smooth",
-        width: 4,
-        lineCap: "round"
-      },
-      colors: [
-        "#5C31D6"
-      ],
-      fill: {
-        type: "gradient",
-        gradient: {
-          shadeIntensity: 0,
-          inverseColors: !0,
-          opacityFrom: 0,
-          opacityTo: 0,
-          stops: [
-            75, 100, 100, 100
-          ]
-        }
-      },
-      tooltip: {
-        fixed: {
-          enabled: !1
-        },
-        x: {
-          show: !1
-        },
-        marker: {
-          show: !1
-        }
+      grid: {
+        show: true,
+        borderColor: '#f6f6f7',
       },
     },
     chart = new ApexCharts(
@@ -322,52 +380,45 @@
   chart.render();
   // Conversions Chart
   var options = {
+      chart: {
+        height: 200,
+        type: 'area',
+        zoom: {
+          enabled: false
+        }
+      },
+      dataLabels: {
+        enabled: false
+      },
+      stroke: {
+        curve: 'straight'
+      },
+      colors: [
+        "#0000ff"
+      ],
       series: [{
         name: "pH",
         data: [<?php
                 if (count($graph) > 0) {
-                  foreach ($graph as $row) {
+                  foreach (array_reverse($graph) as $row) {
                     echo $row->ph . ", ";
                   }
                 } ?>]
       }],
-      chart: {
-        type: "area",
-        height: 50,
-        sparkline: {
-          enabled: !0
-        }
+      labels: [<?php
+                if (count($graph) > 0) {
+                  foreach ($graph as $row) {
+                    echo '"' . $row->waktu . '",';
+                  }
+                }
+                ?>],
+
+      legend: {
+        horizontalAlign: 'left'
       },
-      stroke: {
-        curve: "smooth",
-        width: 4,
-        lineCap: "round"
-      },
-      colors: [
-        "#ff0000"
-      ],
-      fill: {
-        type: "gradient",
-        gradient: {
-          shadeIntensity: 0,
-          inverseColors: !0,
-          opacityFrom: 0,
-          opacityTo: 0,
-          stops: [
-            75, 100, 100, 100
-          ]
-        }
-      },
-      tooltip: {
-        fixed: {
-          enabled: !1
-        },
-        x: {
-          show: !1
-        },
-        marker: {
-          show: !1
-        }
+      grid: {
+        show: true,
+        borderColor: '#f6f6f7',
       },
     },
     chart = new ApexCharts(
@@ -377,52 +428,45 @@
   chart.render();
   // DO
   var options = {
+      chart: {
+        height: 200,
+        type: 'area',
+        zoom: {
+          enabled: false
+        }
+      },
+      dataLabels: {
+        enabled: false
+      },
+      stroke: {
+        curve: 'straight'
+      },
+      colors: [
+        "#0000ff"
+      ],
       series: [{
-        name: "DO",
+        name: "Dissolved Oxygen",
         data: [<?php
                 if (count($graph) > 0) {
-                  foreach ($graph as $row) {
+                  foreach (array_reverse($graph) as $row) {
                     echo $row->do . ", ";
                   }
                 } ?>]
       }],
-      chart: {
-        type: "area",
-        height: 50,
-        sparkline: {
-          enabled: !0
-        }
+      labels: [<?php
+                if (count($graph) > 0) {
+                  foreach ($graph as $row) {
+                    echo '"' . $row->waktu . '",';
+                  }
+                }
+                ?>],
+
+      legend: {
+        horizontalAlign: 'left'
       },
-      stroke: {
-        curve: "smooth",
-        width: 4,
-        lineCap: "round"
-      },
-      colors: [
-        "#5C31D6"
-      ],
-      fill: {
-        type: "gradient",
-        gradient: {
-          shadeIntensity: 0,
-          inverseColors: !0,
-          opacityFrom: 0,
-          opacityTo: 0,
-          stops: [
-            75, 100, 100, 100
-          ]
-        }
-      },
-      tooltip: {
-        fixed: {
-          enabled: !1
-        },
-        x: {
-          show: !1
-        },
-        marker: {
-          show: !1
-        }
+      grid: {
+        show: true,
+        borderColor: '#f6f6f7',
       },
     },
     chart = new ApexCharts(
@@ -432,52 +476,45 @@
   chart.render();
   // turbidity
   var options = {
+      chart: {
+        height: 200,
+        type: 'area',
+        zoom: {
+          enabled: false
+        }
+      },
+      dataLabels: {
+        enabled: false
+      },
+      stroke: {
+        curve: 'straight'
+      },
+      colors: [
+        "#0000ff"
+      ],
       series: [{
         name: "Turbidity",
         data: [<?php
                 if (count($graph) > 0) {
-                  foreach ($graph as $row) {
+                  foreach (array_reverse($graph) as $row) {
                     echo $row->turbidity . ", ";
                   }
                 } ?>]
       }],
-      chart: {
-        type: "area",
-        height: 50,
-        sparkline: {
-          enabled: !0
-        }
+      labels: [<?php
+                if (count($graph) > 0) {
+                  foreach ($graph as $row) {
+                    echo '"' . $row->waktu . '",';
+                  }
+                }
+                ?>],
+
+      legend: {
+        horizontalAlign: 'left'
       },
-      stroke: {
-        curve: "smooth",
-        width: 4,
-        lineCap: "round"
-      },
-      colors: [
-        "#5C31D6"
-      ],
-      fill: {
-        type: "gradient",
-        gradient: {
-          shadeIntensity: 0,
-          inverseColors: !0,
-          opacityFrom: 0,
-          opacityTo: 0,
-          stops: [
-            75, 100, 100, 100
-          ]
-        }
-      },
-      tooltip: {
-        fixed: {
-          enabled: !1
-        },
-        x: {
-          show: !1
-        },
-        marker: {
-          show: !1
-        }
+      grid: {
+        show: true,
+        borderColor: '#f6f6f7',
       },
     },
     chart = new ApexCharts(
