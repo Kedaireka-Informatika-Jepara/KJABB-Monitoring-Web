@@ -200,6 +200,7 @@ if (!empty($this->session->flashdata('info'))) { ?>
                             <option value="curah">Curah Hujan</option>
                             <option value="ph">pH</option>
                             <option value="do">Dissolve Oxygen</option>
+                            <option value="turbidity">Turbidity</option>
                         </select>
                         <br>
                     </div>

@@ -22,6 +22,7 @@ class Rekap extends CI_Controller
                 $url_export4 = 'rekap/export_data4?filter=1&tanggal=' . $tgl;
                 $url_export5 = 'rekap/export_data5?filter=1&tanggal=' . $tgl;
                 $url_export6 = 'rekap/export_data6?filter=1&tanggal=' . $tgl;
+                $url_export7 = 'rekap/export_data7?filter=1&tanggal=' . $tgl;
                 $rekap = $this->M_rekap->view_by_date($tgl); // Panggil fungsi view_by_date yang ada di TransaksiModel
             } else if ($filter == '2') { // Jika filter nya 2 (per bulan)
                 $bulan = $_GET['bulan'];
@@ -33,6 +34,7 @@ class Rekap extends CI_Controller
                 $url_export4 = 'rekap/export_data4?filter=2&bulan=' . $bulan . '&tahun=' . $tahun;
                 $url_export5 = 'rekap/export_data5?filter=2&bulan=' . $bulan . '&tahun=' . $tahun;
                 $url_export6 = 'rekap/export_data6?filter=2&bulan=' . $bulan . '&tahun=' . $tahun;
+                $url_export7 = 'rekap/export_data7?filter=2&bulan=' . $bulan . '&tahun=' . $tahun;
                 $rekap = $this->M_rekap->view_by_month($bulan, $tahun); // Panggil fungsi view_by_month yang ada di TransaksiModel
             } else { // Jika filter nya 3 (per tahun)
                 $tahun = $_GET['tahun'];
@@ -43,6 +45,7 @@ class Rekap extends CI_Controller
                 $url_export4 = 'rekap/export_data4?filter=3&tahun=' . $tahun;
                 $url_export5 = 'rekap/export_data5?filter=3&tahun=' . $tahun;
                 $url_export6 = 'rekap/export_data6?filter=3&tahun=' . $tahun;
+                $url_export7 = 'rekap/export_data7?filter=3&tahun=' . $tahun;
                 $rekap = $this->M_rekap->view_by_year($tahun); // Panggil fungsi view_by_year yang ada di TransaksiModel
             }
         } else { // Jika user tidak mengklik tombol tampilkan
@@ -54,6 +57,7 @@ class Rekap extends CI_Controller
             $url_export4 = 'rekap/export_data4';
             $url_export5 = 'rekap/export_data5';
             $url_export6 = 'rekap/export_data6';
+            $url_export7 = 'rekap/export_data7';
             $rekap = $this->M_rekap->view_all(); // Panggil fungsi view_all yang ada di TransaksiModel
         }
 
@@ -66,7 +70,8 @@ class Rekap extends CI_Controller
         $isi['export_amonia'] = $url_export3;
         $isi['export_curah_hujan'] = $url_export4;
         $isi['export_ph'] = $url_export5;
-        $isi['export_do'] = $url_export5;
+        $isi['export_do'] = $url_export6;
+        $isi['export_turbidity'] = $url_export7;
         $isi['option_tahun'] = $this->M_rekap->option_tahun();
         $this->load->view('V_dashboard', $isi);
 
@@ -90,6 +95,9 @@ class Rekap extends CI_Controller
             }
             if ($cetak == 'do'){
                 redirect($url_export6);
+            }
+            if ($cetak == 'turbidity'){
+                redirect($url_export7);
             }
             // $_POST = array();
         }
@@ -127,6 +135,10 @@ class Rekap extends CI_Controller
         <!-- table -->
 
         <table border="1" width="100%">
+            <thead> 
+                <th colspan="9"><?= $label?></th>
+            </thead>
+            <tbody>
             <tr>
                 <th>No</th>
                 <th>Tanggal</th>
@@ -136,6 +148,7 @@ class Rekap extends CI_Controller
                 <th>Curah Hujan</th>
                 <th>pH</th>
                 <th>Dissolve Oxygen</th>
+                <th>Turbidity</th>
             </tr>
             <?php
             $no = 1;
@@ -150,10 +163,12 @@ class Rekap extends CI_Controller
                     <td><?php echo $row->curah_hujan; ?></td>
                     <td><?php echo $row->ph; ?></td>
                     <td><?php echo $row->do; ?></td>
+                    <td><?php echo $row->turbidity; ?></td>
                 </tr>
             <?php
             }
             ?>
+            </tbody>
         </table>
 <?php
         exit;
@@ -191,6 +206,9 @@ class Rekap extends CI_Controller
         <!-- table -->
 
         <table border="1" width="100%">
+        <thead> 
+                <th colspan="4"><?= $label?></th>
+            </thead>
             <tr>
                 <th>No</th>
                 <th>Tanggal</th>
@@ -246,6 +264,9 @@ class Rekap extends CI_Controller
         <!-- table -->
 
         <table border="1" width="100%">
+        <thead> 
+                <th colspan="4"><?= $label?></th>
+            </thead>
             <tr>
                 <th>No</th>
                 <th>Tanggal</th>
@@ -302,6 +323,9 @@ class Rekap extends CI_Controller
         <!-- table -->
 
         <table border="1" width="100%">
+        <thead> 
+                <th colspan="4"><?= $label?></th>
+            </thead>
             <tr>
                 <th>No</th>
                 <th>Tanggal</th>
@@ -357,6 +381,9 @@ class Rekap extends CI_Controller
         <!-- table -->
 
         <table border="1" width="100%">
+        <thead> 
+                <th colspan="4"><?= $label?></th>
+            </thead>
             <tr>
                 <th>No</th>
                 <th>Tanggal</th>
@@ -412,6 +439,9 @@ class Rekap extends CI_Controller
         <!-- table -->
 
         <table border="1" width="100%">
+        <thead> 
+                <th colspan="4"><?= $label?></th>
+            </thead>
             <tr>
                 <th>No</th>
                 <th>Tanggal</th>
@@ -435,4 +465,63 @@ class Rekap extends CI_Controller
 <?php
         exit;
     }
+    public function export_data7()
+    {
+        if (isset($_GET['filter']) && !empty($_GET['filter'])) { // Cek apakah user telah memilih filter dan klik tombol tampilkan
+            $filter = $_GET['filter']; // Ambil data filder yang dipilih user
+            if ($filter == '1') { // Jika filter nya 1 (per tanggal)
+                $tgl = $_GET['tanggal'];
+                $label = 'Data Rekap Sensor Turbidity Tanggal ' . $tgl;
+                $rekap = $this->M_rekap->view_by_date($tgl); // Panggil fungsi view_by_date yang ada di TransaksiModel
+            } else if ($filter == '2') { // Jika filter nya 2 (per bulan)
+                $bulan = $_GET['bulan'];
+                $tahun = $_GET['tahun'];
+                $nama_bulan = array('', 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember');
+                $label = 'Data Rekap Sensor Turbidity Bulan ' . $nama_bulan[$bulan] . ' ' . $tahun;
+                $rekap = $this->M_rekap->view_by_month($bulan, $tahun); // Panggil fungsi view_by_month yang ada di TransaksiModel
+            } else { // Jika filter nya 3 (per tahun)
+                $tahun = $_GET['tahun'];
+                $label = 'Data Rekap Sensor Turbidity Tahun ' . $tahun;
+                $rekap = $this->M_rekap->view_by_year($tahun); // Panggil fungsi view_by_year yang ada di TransaksiModel
+            }
+        } else { // Jika user tidak mengklik tombol tampilkan
+
+            $label = 'Semua Data Rekap Sensor Turbidity';
+            $rekap = $this->M_rekap->view_all(); // Panggil fungsi view_all yang ada di TransaksiModel
+        }
+
+        header('Content-Type: application/vnd.ms-excel');
+        header('Content-Disposition: attachment;filename="' . $label . '.xls"');
+        // echo tabel
+?>
+        <!-- table -->
+
+        <table border="1" width="100%">
+        <thead> 
+                <th colspan="4"><?= $label?></th>
+            </thead>
+            <tr>
+                <th>No</th>
+                <th>Tanggal</th>
+                <th>Waktu</th>
+                <th>Turbidity</th>
+            </tr>
+            <?php
+            $no = 1;
+            foreach ($rekap as $row) {
+            ?>
+                <tr>
+                    <td><?php echo $no++; ?></td>
+                    <td><?php echo $row->tanggal; ?></td>
+                    <td><?php echo $row->waktu; ?></td>
+                    <td><?php echo $row->turbidity; ?></td>
+                </tr>
+            <?php
+            }
+            ?>
+        </table>
+<?php
+        exit;
+    }
+    
 }
