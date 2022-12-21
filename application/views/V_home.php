@@ -45,7 +45,7 @@
       <div class="col-lg-6">
         <div class="card-box-style">
           <div class="single-click-content">
-            <span class="features-title">pH</span>
+            <span class="features-title text-danger">pH</span>
             <h3><?php foreach ($sensor as $row) {
                   echo $row->ph;
                 } ?></h3>
@@ -58,7 +58,7 @@
       <div class="col-lg-6">
         <div class="card-box-style">
           <div class="single-click-content">
-            <span class="features-title">Dissolved Oxygen</span>
+            <span class="features-title ">Dissolved Oxygen</span>
             <h3><?php
                     foreach ($sensor as $row) {
                       echo $row->do;
@@ -262,7 +262,7 @@
       }],
       labels: [<?php
                 if (count($graph) > 0) {
-                  foreach ($graph as $row) {
+                  foreach (array_reverse($graph) as $row) {
                     echo '"' . $row->waktu . '",';
                   }
                 }
@@ -311,7 +311,7 @@
       }],
       labels: [<?php
                 if (count($graph) > 0) {
-                  foreach ($graph as $row) {
+                  foreach (array_reverse($graph) as $row) {
                     echo '"' . $row->waktu . '",';
                   }
                 }
@@ -346,7 +346,7 @@
         curve: 'straight'
       },
       colors: [
-        "#0000ff"
+        "#5bc0de"
       ],
       series: [{
         name: "Curah Hujan",
@@ -359,7 +359,7 @@
       }],
       labels: [<?php
                 if (count($graph) > 0) {
-                  foreach ($graph as $row) {
+                  foreach (array_reverse($graph) as $row) {
                     echo '"' . $row->waktu . '",';
                   }
                 }
@@ -394,7 +394,7 @@
         curve: 'straight'
       },
       colors: [
-        "#0000ff"
+        "#ff0000"
       ],
       series: [{
         name: "pH",
@@ -407,7 +407,7 @@
       }],
       labels: [<?php
                 if (count($graph) > 0) {
-                  foreach ($graph as $row) {
+                  foreach (array_reverse($graph) as $row) {
                     echo '"' . $row->waktu . '",';
                   }
                 }
@@ -455,7 +455,7 @@
       }],
       labels: [<?php
                 if (count($graph) > 0) {
-                  foreach ($graph as $row) {
+                  foreach (array_reverse($graph) as $row) {
                     echo '"' . $row->waktu . '",';
                   }
                 }
@@ -490,7 +490,7 @@
         curve: 'straight'
       },
       colors: [
-        "#0000ff"
+        "#67748e"
       ],
       series: [{
         name: "Turbidity",
@@ -503,7 +503,7 @@
       }],
       labels: [<?php
                 if (count($graph) > 0) {
-                  foreach ($graph as $row) {
+                  foreach (array_reverse($graph) as $row) {
                     echo '"' . $row->waktu . '",';
                   }
                 }
