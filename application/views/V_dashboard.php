@@ -101,7 +101,7 @@
                                     <div class="dropdown-footer">
                                         <ul class="profile-nav">
                                             <li class="nav-item">
-                                                <a data-bs-toggle="modal" data-bs-target="#exampleModalCenter"" class="nav-link">
+                                                <a data-bs-toggle="modal" data-bs-target="#exampleModalCenter" class="nav-link">
                                                     <i class="ri-login-circle-line"></i>
                                                     <span>Logout</span>
                                                 </a>
@@ -134,7 +134,7 @@
 
                 <li class="list-group-item main-grid <?php if (preg_match('/sensor/', uri_string())) echo 'active' ?>">
                     <a href="<?= base_url() ?>sensor" class="icon">
-                        <img src="<?= base_url() ?>assets/images/icon/messages.svg" alt="messages">
+                    <img src="<?= base_url() ?>assets/images/icon/draft.svg" alt="sensor">
                     </a>
                 </li>
                 <li class="list-group-item main-grid <?php if (uri_string() == 'notifikasi') echo 'active' ?>">
