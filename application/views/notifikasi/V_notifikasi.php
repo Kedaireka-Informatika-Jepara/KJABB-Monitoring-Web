@@ -8,8 +8,8 @@ if (!empty($this->session->flashdata('info'))) { ?>
 <br>
 <div class="total-browse-content card-box-style">
 <div class="box">
-    <div class="box-header">
-        <h3 class="box-title">Data Notifikasi</h3>
+    <div class="box-header row">
+        <h3 class="box-title col-10">Data Notifikasi</h3>
     </div>
     <!-- /.box-header -->
     <div class="box-body">
@@ -41,7 +41,7 @@ if (!empty($this->session->flashdata('info'))) { ?>
 
                         </td>
                         <td>
-                            <button data-bs-toggle="modal" data-bs-target="#modalhapus<?= $row->id_notif; ?>" class="btn btn-danger btn-xs">Hapus</button>
+                            <button data-bs-toggle="modal" data-bs-target="#modalhapus<?= $row->id_notif; ?>" class="btn btn-danger btn-xs"><i class="ri-delete-bin-fill"></i> Hapus</button>
                         </td>
                     </tr>
 
@@ -50,6 +50,10 @@ if (!empty($this->session->flashdata('info'))) { ?>
         </table>
     </div>
 </div>
+<div class="row">
+    <a href="<?= base_url() ?>notifikasi/tandaisemua" class="col-lg-3 mb-3 btn btn-primary">Tandai Semua Sudah Dibaca</a>
+<button data-bs-toggle="modal" data-bs-target="#modalhapussemua" class="col-2 ms-3 mb-3 btn btn-danger">Hapus Semua</button>
+
 </div>
 <!-- Modal -->
 <?php foreach ($data as $row) { ?>
@@ -73,3 +77,22 @@ if (!empty($this->session->flashdata('info'))) { ?>
     </div>
   </div>
 <?php } ?>
+<div class="modal fade" id="modalhapussemua" tabindex="-1" role="dialog" aria-labelledby="hapussemua" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="hapus">Hapus Semua Notifikasi</h5>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <b>Apakah anda yakin ingin menghapus semua notifikasi?</b>
+        </div>
+        <div class="modal-footer">
+            <a type="button" class="btn btn-danger" href="<?= base_url() ?>notifikasi/hapussemua">Hapus</a>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
