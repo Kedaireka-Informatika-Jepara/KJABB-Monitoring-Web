@@ -146,7 +146,7 @@ if (!empty($this->session->flashdata('info'))) { ?>
                             <th>Amonia</th>
                             <th>Curah Hujan</th>
                             <th>pH</th>
-                            <th>tds</th>
+                            <th>Total Dissolved Solids</th>
                             <th>Turbidity</th>
                         </tr>
                     </thead>

@@ -65,7 +65,7 @@
                     }
                     ?> ppm</h3>
           </div>
-          <div id="do_chart"></div>
+          <div id="tds_chart"></div>
         </div>
       </div>
       <div class="col-lg-6">
@@ -311,7 +311,7 @@
         "#0000ff"
       ],
       series: [{
-        name: "Dissolved Oxygen",
+        name: "Total Dissolve Solids",
         data: [<?php
                 if (count($graph) > 0) {
                   foreach (array_reverse($graph) as $row) {
@@ -336,7 +336,7 @@
       },
     },
     chart = new ApexCharts(
-      document.querySelector("#do_chart"),
+      document.querySelector("#tds_chart"),
       options
     );
   chart.render();
