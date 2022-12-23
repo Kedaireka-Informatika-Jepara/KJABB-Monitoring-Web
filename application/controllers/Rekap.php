@@ -6,6 +6,7 @@ class Rekap extends CI_Controller
         parent::__construct();
         $this->load->model('M_rekap');
         $this->load->model('M_squrity');
+        $this->load->model('M_dashboard');
     }
 
     public function index()
@@ -63,6 +64,8 @@ class Rekap extends CI_Controller
 
         $isi['content'] = 'rekap/V_rekap';
         $isi['judul'] = 'Monitoring | Rekap Data Sensor';
+        $isi['notifikasi'] = $this->M_dashboard->getUnreadNotif();
+		$isi['user'] = $this->M_dashboard->petugas();
         $isi['rekap'] = $rekap;
         $isi['label'] = $label;
         $isi['export'] = $url_export;

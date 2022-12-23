@@ -8,6 +8,7 @@ class Dashboard extends CI_Controller
 		parent::__construct();
 		$this->load->model('M_squrity');
 		$this->load->model('M_dashboard');
+		$this->load->model('M_notifikasi');
 	}
 
 	public function index()
@@ -19,6 +20,8 @@ class Dashboard extends CI_Controller
 		$isi['sensor'] = $this->M_dashboard->curSensor();
 		$isi['graph'] = $this->M_dashboard->graph();
 		$isi['data'] = $this->db->get('data_sensor')->result();
+		$isi['notifikasi'] = $this->M_notifikasi->getUnreadNotif();
+		$isi['user'] = $this->M_dashboard->petugas();
 		$this->load->view('V_dashboard', $isi);
 	}
 }

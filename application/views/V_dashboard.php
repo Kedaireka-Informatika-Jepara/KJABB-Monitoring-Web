@@ -36,8 +36,7 @@
 
                             <div class="header-right-option notification-option dropdown">
                                 <?php
-                                $notif = $this->db->get_where('notifikasi', ['is_read' => 0])->result_array();
-                                $notif_count = count($notif);
+                                $notif_count = count($notifikasi);
                                 ?>
                                 <div class="dropdown-item dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <div class="notification-btn">
@@ -53,14 +52,14 @@
                                     </div>
 
                                     <div class="dropdown-wrap" data-simplebar>
-                                        <?php foreach ($notif as $data) : ?>
+                                        <?php foreach ($notifikasi as $data) : ?>
                                             <a href="<?= base_url() ?>notifikasi" class="dropdown-item d-flex align-items-center">
                                                 <div class="icon">
                                                     <i class='bx bx-comment-dots'></i>
                                                 </div>
 
                                                 <div class="content">
-                                                    <span class="d-block"><?= $data['judul']; ?></span>
+                                                    <span class="d-block"><?= $data->judul; ?></span>
                                                 </div>
                                             </a>
                                         <?php endforeach; ?>
@@ -79,7 +78,7 @@
                                         <h3>
                                             <!-- name user -->
                                             <?php
-                                            $user = $this->db->get_where('petugas', ['idpetugas' => $this->session->userdata('idpetugas')])->row_array();
+                                            // $user = $this->db->get_where('petugas', ['idpetugas' => $this->session->userdata('idpetugas')])->row_array();
                                             echo $user['nama'];
                                             ?>
                                         </h3>

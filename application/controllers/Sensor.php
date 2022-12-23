@@ -7,6 +7,7 @@ class Sensor extends CI_Controller
         parent::__construct();
         $this->load->model('M_sensor');
         $this->load->model('M_squrity');
+        $this->load->model('M_dashboard');
     }
 
     public function index()
@@ -15,6 +16,8 @@ class Sensor extends CI_Controller
         $isi['content'] = 'sensor/V_sensor';
         $isi['judul'] = 'Monitoring | Daftar Data Batas Sensor';
         $isi['data'] = $this->M_sensor->getSensor();
+        $isi['notifikasi'] = $this->M_dashboard->getUnreadNotif();
+		$isi['user'] = $this->M_dashboard->petugas();
         $this->load->view('V_dashboard', $isi);
     }
 

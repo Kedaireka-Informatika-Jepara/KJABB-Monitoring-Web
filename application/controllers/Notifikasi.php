@@ -5,8 +5,9 @@ class Notifikasi extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('M_notifikasi');
         $this->load->model('M_squrity');
+        $this->load->model('M_notifikasi');
+        $this->load->model('M_dashboard');
     }
 
     public function index()
@@ -15,6 +16,8 @@ class Notifikasi extends CI_Controller
         $isi['content'] = 'notifikasi/V_notifikasi';
         $isi['judul'] = 'Daftar Notifikasi';
         $isi['data'] = $this->M_notifikasi->getNotif();
+        $isi['notifikasi'] = $this->M_dashboard->getUnreadNotif();
+		$isi['user'] = $this->M_dashboard->petugas();
         $this->load->view('V_dashboard', $isi);
     }
 

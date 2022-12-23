@@ -19,6 +19,7 @@ class M_notifikasi extends CI_Model
         ];
         $this->db->update('notifikasi', $data);
     }
+    
     public function getNotif()
     {
         $this->db->order_by('id_notif', 'DESC');
