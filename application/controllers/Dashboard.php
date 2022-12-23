@@ -20,7 +20,7 @@ class Dashboard extends CI_Controller
 		$isi['sensor'] = $this->M_dashboard->curSensor();
 		$isi['graph'] = $this->M_dashboard->graph();
 		$isi['data'] = $this->db->get('data_sensor')->result();
-		$isi['notifikasi'] = $this->M_notifikasi->getUnreadNotif();
+		$isi['notifikasi'] = $this->M_dashboard->getUnreadNotif();
 		$isi['user'] = $this->M_dashboard->petugas();
 		$this->load->view('V_dashboard', $isi);
 	}
