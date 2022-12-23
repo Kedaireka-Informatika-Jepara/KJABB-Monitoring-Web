@@ -40,11 +40,18 @@ class M_api extends CI_Model{
                 $notif['pesan'] = 'Kadar amonia saat ini melewati batas normal, yaitu '.$data['amonia'].' ppm';
                 $this->db->insert('notifikasi', $notif);
             }
-            // if($s->nama_sensor == "Curah Hujan" && (($data['curah_hujan'] > $s->batas_atas)||($data['curah_hujan'] < $s->batas_bawah))){
-            //     $notif['judul'] = 'Curah hujan melewati batas normal';
-            //     $notif['pesan'] = 'Curah hujan saat ini melewati batas normal, yaitu '.$data['curah_hujan'].' mm';
-            //     $this->db->insert('notifikasi', $notif);
-            // }
+            if($s->nama_sensor == "Curah Hujan"){
+                if($data['curah_hujan']<600){
+                    $notif['judul'] = 'Terjadi Hujan Deras';
+                    $notif['pesan'] = 'Hujan dengan intensitas '.$data['curah_hujan'].' mm terjadi di sekitar keramba';
+                    $this->db->insert('notifikasi', $notif);
+                }
+                else if($data['curah_hujan']<900 && $data['curah_hujan']>=600){
+                    $notif['judul'] = 'Terjadi Hujan Ringan';
+                    $notif['pesan'] = 'Hujan dengan intensitas '.$data['curah_hujan'].' mm terjadi di sekitar keramba';
+                    $this->db->insert('notifikasi', $notif);
+                }
+            }
             if($s->nama_sensor == "pH" && (($data['ph'] > $s->batas_atas)||($data['ph'] < $s->batas_bawah))){
                 $notif['judul'] = 'Kadar pH melewati batas normal';
                 $notif['pesan'] = 'Kadar pH saat ini melewati batas normal, yaitu '.$data['ph'];
