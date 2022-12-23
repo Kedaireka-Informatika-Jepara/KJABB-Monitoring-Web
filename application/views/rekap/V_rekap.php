@@ -146,7 +146,7 @@ if (!empty($this->session->flashdata('info'))) { ?>
                             <th>Amonia</th>
                             <th>Curah Hujan</th>
                             <th>pH</th>
-                            <th>DO</th>
+                            <th>tds</th>
                             <th>Turbidity</th>
                         </tr>
                     </thead>
@@ -160,7 +160,7 @@ if (!empty($this->session->flashdata('info'))) { ?>
                                 <td><?= $row->amonia; ?></td>
                                 <td><?= $row->curah_hujan; ?></td>
                                 <td><?= $row->ph; ?></td>
-                                <td><?= $row->do; ?></td>
+                                <td><?= $row->tds; ?></td>
                                 <td><?= $row->turbidity ?>
                                 </td>
                             </tr>
@@ -199,7 +199,7 @@ if (!empty($this->session->flashdata('info'))) { ?>
                             <option value="amonia">Amonia</option>
                             <option value="curah">Curah Hujan</option>
                             <option value="ph">pH</option>
-                            <option value="do">Dissolve Oxygen</option>
+                            <option value="tds">Total Dissolved Solids</option>
                             <option value="turbidity">Turbidity</option>
                         </select>
                         <br>

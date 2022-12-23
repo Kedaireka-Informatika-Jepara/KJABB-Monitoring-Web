@@ -58,12 +58,12 @@
       <div class="col-lg-6">
         <div class="card-box-style">
           <div class="single-click-content">
-            <span class="features-title ">Dissolved Oxygen</span>
+            <span class="features-title ">Total Dissolved Solids</span>
             <h3><?php
                     foreach ($sensor as $row) {
-                      echo $row->do;
+                      echo $row->tds;
                     }
-                    ?> mg/L</h3>
+                    ?> ppm</h3>
           </div>
           <div id="do_chart"></div>
         </div>
@@ -292,7 +292,7 @@
       options
     );
   chart.render();
-  // DO
+  // tds
   var options = {
       chart: {
         height: 200,
@@ -315,7 +315,7 @@
         data: [<?php
                 if (count($graph) > 0) {
                   foreach (array_reverse($graph) as $row) {
-                    echo $row->do . ", ";
+                    echo $row->tds . ", ";
                   }
                 } ?>]
       }],

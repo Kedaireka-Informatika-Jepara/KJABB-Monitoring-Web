@@ -17,7 +17,7 @@ class M_api extends CI_Model{
             'curah_hujan' => $_POST['raindrop'],
             'ph' => $_POST['ph'],
             'turbidity' => $_POST['turbidity'],
-            'do' => $_POST['tds'],
+            'tds' => $_POST['tds'],
             'tanggal' => $d,
             'waktu' => $t
         );
@@ -62,9 +62,9 @@ class M_api extends CI_Model{
                 $notif['pesan'] = 'Kadar turbidity saat ini melewati batas normal, yaitu '.$data['turbidity'].' NTU';
                 $this->db->insert('notifikasi', $notif);
             }
-            if($s->nama_sensor == "TDS" && (($data['do'] > $s->batas_atas)||($data['do'] < $s->batas_bawah))){
-                $notif['judul'] = 'Kadar DO melewati batas normal';
-                $notif['pesan'] = 'Kadar DO saat ini melewati batas normal, yaitu '.$data['do'].' mg/L';
+            if($s->nama_sensor == "TDS" && (($data['tds'] > $s->batas_atas)||($data['tds'] < $s->batas_bawah))){
+                $notif['judul'] = 'Kadar tds melewati batas normal';
+                $notif['pesan'] = 'Kadar tds saat ini melewati batas normal, yaitu '.$data['tds'].' mg/L';
                 $this->db->insert('notifikasi', $notif);
             }
         }

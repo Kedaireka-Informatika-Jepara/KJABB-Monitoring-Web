@@ -28,6 +28,8 @@ class Sensor extends CI_Controller
         $isi['content'] = 'sensor/Edit_sensor';
         $isi['judul'] = 'Monitoring | Form Edit Batas Sensor';
         $isi['data'] = $this->M_sensor->edit($id);
+        $isi['notifikasi'] = $this->M_dashboard->getUnreadNotif();
+		$isi['user'] = $this->M_dashboard->petugas();
         $this->load->view('V_dashboard', $isi);
     }
 
