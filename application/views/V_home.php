@@ -18,7 +18,7 @@
             <span class="features-title text-primary">Amonia</span>
             <h3><?php foreach ($sensor as $row) {
                   echo $row->amonia;
-                } ?>PPM</h3>
+                } ?> PPM</h3>
           </div>
           <div id="amonia_chart"></div>
         </div>
@@ -48,7 +48,7 @@
             <span class="features-title text-danger">pH</span>
             <h3><?php foreach ($sensor as $row) {
                   echo $row->ph;
-                } ?></h3>
+                } ?> pH</h3>
           </div>
           <div id="ph_chart"></div>
         </div>
@@ -63,7 +63,7 @@
                     foreach ($sensor as $row) {
                       echo $row->do;
                     }
-                    ?></h3>
+                    ?> mg/L</h3>
           </div>
           <div id="do_chart"></div>
         </div>
@@ -80,141 +80,7 @@
         </div>
       </div>
     </div>
-    <!-- <div class="row justify-content-center">
-      <div class="col-lg-4 col-md-6">
-        <div class="single-features">
-          <div class="row align-items-center">
-            <div class="col-xl-6 col-sm-6">
-              <div class="single-click-content">
-                <span class="features-title">Suhu Air</span>
-                <h3><?php foreach ($sensor as $row) {
-                      echo $row->suhu;
-                    } ?>°C</h3>
-              </div>
-            </div>
-
-            <div class="col-xl-6 col-sm-6">
-              <div class="single-click-chart">
-
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-4 col-md-6">
-        <div class="single-features color-style-1765fd">
-          <div class="row align-items-center">
-            <div class="col-xl-6 col-sm-6">
-              <div class="single-click-content">
-                <span class="features-title">Amonia</span>
-                <h3><?php foreach ($sensor as $row) {
-                      echo $row->amonia;
-                    } ?> PPM</h3>
-              </div>
-            </div>
-
-            <div class="col-xl-6 col-sm-6">
-              <div class="single-click-chart">
-                <div id="amonia_chart"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-4 col-md-6">
-        <div class="single-features color-style-5c31d6">
-          <div class="row align-items-center">
-            <div class="col-xl-6 col-sm-6">
-              <div class="single-click-content">
-                <span class="features-title">Curah Hujan</span>
-                <h3><?php
-                    if ($row->curah_hujan < 600) {
-                      echo "Hujan Deras";
-                    } else if ($row->curah_hujan < 800 && $row->curah_hujan >= 600) {
-                      echo "Hujan Ringan";
-                    } else {
-                      echo "Tidak Hujan";
-                    }
-                    ?></h3>
-              </div>
-            </div>
-
-            <div class="col-xl-6 col-sm-6">
-              <div class="single-click-chart">
-                <div id="curah_chart"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row justify-content-center">
-      <div class="col-lg-4 col-md-6">
-        <div class="single-features color-style-ff0000">
-          <div class="row align-items-center">
-            <div class="col-xl-6 col-sm-6">
-              <div class="single-click-content">
-                <span class="features-title text-danger">pH</span>
-                <h3><?php foreach ($sensor as $row) {
-                      echo $row->ph;
-                    } ?></h3>
-              </div>
-            </div>
-
-            <div class="col-xl-6 col-sm-6">
-              <div class="single-click-chart">
-                <div id="ph_chart"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-4 col-md-6">
-        <div class="single-features color-style-1765fd">
-          <div class="row align-items-center">
-            <div class="col-xl-6 col-sm-6">
-              <div class="single-click-content">
-                <span class="features-title text-warning">DO</span>
-                <h3><?php foreach ($sensor as $row) {
-                      echo $row->do;
-                    } ?></h3>
-              </div>
-            </div>
-
-            <div class="col-xl-6 col-sm-6">
-              <div class="single-click-chart">
-                <div id="do_chart"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-4 col-md-6">
-        <div class="single-features color-style-5c31d6">
-          <div class="row align-items-center">
-            <div class="col-xl-6 col-sm-6">
-              <div class="single-click-content">
-                <span class="features-title">Kekeruhan Air</span>
-                <h3><?php foreach ($sensor as $row) {
-                      echo $row->turbidity;
-                    } ?> NTU</h3>
-
-              </div>
-            </div>
-
-            <div class="col-xl-6 col-sm-6">
-              <div class="single-click-chart">
-                <div id="turbidity_chart"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> -->
+    
 
   </div>
 </div>
