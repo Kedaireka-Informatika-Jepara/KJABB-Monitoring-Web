@@ -1,8 +1,17 @@
 <?php
 
 class M_sensor extends CI_Model
-{
-
+{ 
+    public function __construct()
+    {
+        $this->load->database();
+    }
+    public function getSensor()
+    {
+        $this->db->order_by('id_sensor', 'DESC');
+        $query = $this->db->get('sensor');
+        return $query->result();
+    }
     public function edit($id)
     {
         $this->db->where('id_sensor', $id);

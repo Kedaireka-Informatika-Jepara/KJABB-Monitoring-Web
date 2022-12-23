@@ -20,16 +20,17 @@ class Notifikasi extends CI_Controller
 
     public function tandai($id)
     {
-        $data = [
-            'is_read' => 1
-        ];
-        $this->db->update('notifikasi', $data, ['id_notif' => $id]);
+        $this->M_squrity->getSqurity();
+        $query = $this->M_notifikasi->tandai($id);
+        if($query = true){
         $this->session->set_flashdata('info', 'Notifikasi Sudah Dibaca');
         redirect('notifikasi');
+        }
     }
 
     public function hapus($id)
     {
+        $this->M_squrity->getSqurity();
         $query = $this->M_notifikasi->hapus($id);
         if ($query = true) {
             $this->session->set_flashdata('info', 'Notifikasi Berhasil Dihapus');
@@ -39,16 +40,20 @@ class Notifikasi extends CI_Controller
 
     public function tandaisemua()
     {
-        $data = [
-            'is_read' => 1
-        ];
-        $this->db->update('notifikasi', $data);
+        $this->M_squrity->getSqurity();
+        $query = $this->M_notifikasi->tandaisemua();
+        if($query = true){
         $this->session->set_flashdata('info', 'Semua Notifikasi Sudah Dibaca');
         redirect('notifikasi');
+        }
     }
+
     public function hapussemua(){
-        $this->db->empty_table('notifikasi');
+        $this->M_squrity->getSqurity();
+        $query = $this->M_notifikasi->hapussemua();
+        if($query = true){
         $this->session->set_flashdata('info', 'Semua Notifikasi Berhasil Dihapus');
         redirect('notifikasi');
+        }
     }
 }

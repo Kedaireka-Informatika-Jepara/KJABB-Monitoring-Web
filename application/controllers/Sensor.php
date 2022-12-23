@@ -14,13 +14,14 @@ class Sensor extends CI_Controller
         $this->M_squrity->getSqurity();
         $isi['content'] = 'sensor/V_sensor';
         $isi['judul'] = 'Monitoring | Daftar Data Batas Sensor';
-        $isi['data'] = $this->db->get('sensor')->result();
+        $isi['data'] = $this->M_sensor->getSensor();
         $this->load->view('V_dashboard', $isi);
     }
 
 
     public function edit($id)
     {
+        $this->M_squrity->getSqurity();
         $isi['content'] = 'sensor/Edit_sensor';
         $isi['judul'] = 'Monitoring | Form Edit Batas Sensor';
         $isi['data'] = $this->M_sensor->edit($id);
@@ -29,6 +30,7 @@ class Sensor extends CI_Controller
 
     public function update()
     {
+        $this->M_squrity->getSqurity();
         $id_sensor = $this->input->post('id_sensor');
         $data = array(
             'nama_sensor' => $this->input->post('nama_sensor'),
@@ -44,6 +46,7 @@ class Sensor extends CI_Controller
 
     public function hapus($id)
     {
+        $this->M_squrity->getSqurity();
         $query = $this->M_sensor->hapus($id);
         if ($query = true) {
             $this->session->set_flashdata('info', 'Data Berhasil Dihapus');

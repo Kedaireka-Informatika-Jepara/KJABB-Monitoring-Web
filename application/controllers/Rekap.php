@@ -105,6 +105,7 @@ class Rekap extends CI_Controller
 
     public function export_data()
     {
+        $this->M_squrity->getSqurity();
         if (isset($_GET['filter']) && !empty($_GET['filter'])) { // Cek apakah user telah memilih filter dan klik tombol tampilkan
             $filter = $_GET['filter']; // Ambil data filder yang dipilih user
             if ($filter == '1') { // Jika filter nya 1 (per tanggal)
@@ -176,6 +177,7 @@ class Rekap extends CI_Controller
 
     public function export_data2()
     {
+        $this->M_squrity->getSqurity();
         if (isset($_GET['filter']) && !empty($_GET['filter'])) { // Cek apakah user telah memilih filter dan klik tombol tampilkan
             $filter = $_GET['filter']; // Ambil data filder yang dipilih user
             if ($filter == '1') { // Jika filter nya 1 (per tanggal)
@@ -235,6 +237,7 @@ class Rekap extends CI_Controller
 
     public function export_data3()
     {
+        $this->M_squrity->getSqurity();
         if (isset($_GET['filter']) && !empty($_GET['filter'])) { // Cek apakah user telah memilih filter dan klik tombol tampilkan
             $filter = $_GET['filter']; // Ambil data filder yang dipilih user
             if ($filter == '1') { // Jika filter nya 1 (per tanggal)
@@ -293,6 +296,7 @@ class Rekap extends CI_Controller
 
     public function export_data4()
     {
+        $this->M_squrity->getSqurity();
         if (isset($_GET['filter']) && !empty($_GET['filter'])) { // Cek apakah user telah memilih filter dan klik tombol tampilkan
             $filter = $_GET['filter']; // Ambil data filder yang dipilih user
             if ($filter == '1') { // Jika filter nya 1 (per tanggal)
@@ -351,6 +355,7 @@ class Rekap extends CI_Controller
     }
     public function export_data5()
     {
+        $this->M_squrity->getSqurity();
         if (isset($_GET['filter']) && !empty($_GET['filter'])) { // Cek apakah user telah memilih filter dan klik tombol tampilkan
             $filter = $_GET['filter']; // Ambil data filder yang dipilih user
             if ($filter == '1') { // Jika filter nya 1 (per tanggal)
@@ -409,6 +414,7 @@ class Rekap extends CI_Controller
     }
     public function export_data6()
     {
+        $this->M_squrity->getSqurity();
         if (isset($_GET['filter']) && !empty($_GET['filter'])) { // Cek apakah user telah memilih filter dan klik tombol tampilkan
             $filter = $_GET['filter']; // Ambil data filder yang dipilih user
             if ($filter == '1') { // Jika filter nya 1 (per tanggal)
@@ -467,6 +473,7 @@ class Rekap extends CI_Controller
     }
     public function export_data7()
     {
+        $this->M_squrity->getSqurity();
         if (isset($_GET['filter']) && !empty($_GET['filter'])) { // Cek apakah user telah memilih filter dan klik tombol tampilkan
             $filter = $_GET['filter']; // Ambil data filder yang dipilih user
             if ($filter == '1') { // Jika filter nya 1 (per tanggal)
