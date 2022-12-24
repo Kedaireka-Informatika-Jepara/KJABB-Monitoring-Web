@@ -8,7 +8,7 @@ class M_sensor extends CI_Model
     }
     public function getSensor()
     {
-        $this->db->order_by('id_sensor', 'DESC');
+        $this->db->order_by('id_sensor', 'ASC');
         $query = $this->db->get('sensor');
         return $query->result();
     }

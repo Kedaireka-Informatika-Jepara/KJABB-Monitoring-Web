@@ -8,7 +8,6 @@ class Dashboard extends CI_Controller
 		parent::__construct();
 		$this->load->model('M_squrity');
 		$this->load->model('M_dashboard');
-		$this->load->model('M_notifikasi');
 	}
 
 	public function index()

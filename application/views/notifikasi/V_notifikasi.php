@@ -34,14 +34,14 @@ if (!empty($this->session->flashdata('info'))) { ?>
                         <td><?= $row->pesan; ?></td>
                         <td>
                             <?php if ($row->is_read == 0) : ?>
-                                <a href="<?= base_url() ?>notifikasi/tandai/<?= $row->id_notif; ?>" class="btn btn-primary btn-xs">Tandai Sudah Dibaca</a>
+                                <a href="<?= base_url() ?>notifikasi/tandai/<?= $row->id_notif; ?>" class="btn btn-primary btn-circle"><i class="fa fa-check"></i></a>
                             <?php else : ?>
                                 <i class="fa fa-check-circle" style="color:#228b22"></i>
                             <?php endif; ?>
 
                         </td>
                         <td>
-                            <button data-bs-toggle="modal" data-bs-target="#modalhapus<?= $row->id_notif; ?>" class="btn btn-danger btn-xs"><i class="ri-delete-bin-fill"></i> Hapus</button>
+                            <button data-bs-toggle="modal" data-bs-target="#modalhapus<?= $row->id_notif; ?>" class="btn btn-danger btn-xs"><i class="ri-delete-bin-fill"></i></button>
                         </td>
                     </tr>
 

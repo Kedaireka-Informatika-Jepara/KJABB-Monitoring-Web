@@ -1,4 +1,5 @@
 <div class="col-md-12">
+    <div class="device-content website card-box-style">
     <!-- Horizontal Form -->
     <div class="box box-info">
         <div class="box-header with-border">
@@ -44,5 +45,6 @@
     </div>
     </form>
 
+</div>
 </div>
 </div>

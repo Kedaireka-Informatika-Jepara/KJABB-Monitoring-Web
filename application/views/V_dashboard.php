@@ -25,7 +25,7 @@
 
                             <div class="main-logo">
                                 <a href="<?= base_url() ?>dashboard">
-                                    <img src="<?= base_url() ?>assets/dist/img/undip.png" alt="main-logo" width="50px" height="50px">
+                                    <img src="<?= base_url() ?>assets/dist/img/fishh.png" alt="main-logo" width="50px" height="50px">
                                 </a>
                             </div>
 
@@ -73,14 +73,11 @@
 
                             <div class="header-right-option dropdown profile-nav-item pt-0 pb-0">
                                 <a class="dropdown-item dropdown-toggle avatar d-flex align-items-center" href="<?= base_url() ?>#" id="navbarDropdown-4" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="<?= base_url() ?>assets/images/avatar.png" alt="avatar">
+                                    <img src="<?= base_url() ?>assets/images/user/pp.jpg" alt="avatar">
                                     <div class="d-none d-lg-block d-md-block">
                                         <h3>
                                             <!-- name user -->
-                                            <?php
-                                            // $user = $this->db->get_where('petugas', ['idpetugas' => $this->session->userdata('idpetugas')])->row_array();
-                                            echo $user['nama'];
-                                            ?>
+                                            <?= $user['nama'];?>
                                         </h3>
                                         <span>ID : <?= $user['idpetugas'] ?></span>
                                     </div>
@@ -89,7 +86,7 @@
                                 <div class="dropdown-menu">
                                     <div class="dropdown-header d-flex flex-column align-items-center">
                                         <div class="figure mb-3">
-                                            <img src="<?= base_url() ?>assets/images/avatar.png" class="rounded-circle" alt="avatar">
+                                            <img src="<?= base_url() ?>assets/images/user/pp.jpg" class="rounded-circle" alt="avatar">
                                         </div>
 
                                         <div class="info text-center">
@@ -177,8 +174,8 @@
          <b> Apakah anda yakin ingin keluar?</b>
         </div>
         <div class="modal-footer">
-          <a type="button" class="btn btn-primary" href="<?= base_url() ?>login/logout">Logout</a>
-          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+          <a type="button" class="btn btn-danger" href="<?= base_url() ?>login/logout">Logout</a>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         </div>
       </div>
     </div>

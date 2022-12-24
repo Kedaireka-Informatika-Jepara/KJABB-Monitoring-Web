@@ -149,53 +149,7 @@
   chart.render();
 
   
-  var options = {
-      chart: {
-        height: 200,
-        type: 'area',
-        zoom: {
-          enabled: false
-        }
-      },
-      dataLabels: {
-        enabled: false
-      },
-      stroke: {
-        curve: 'straight'
-      },
-      colors: [
-        "#0000ff"
-      ],
-      series: [{
-        name: "Amonia",
-        data: [<?php
-                if (count($graph) > 0) {
-                  foreach (array_reverse($graph) as $row) {
-                    echo $row->amonia . ", ";
-                  }
-                } ?>]
-      }],
-      labels: [<?php
-                if (count($graph) > 0) {
-                  foreach (array_reverse($graph) as $row) {
-                    echo '"' . $row->waktu . '",';
-                  }
-                }
-                ?>],
-
-      legend: {
-        horizontalAlign: 'left'
-      },
-      grid: {
-        show: true,
-        borderColor: '#f6f6f7',
-      },
-    },
-    chart = new ApexCharts(
-      document.querySelector("#amonia_chart"),
-      options
-    );
-  chart.render();
+  
   // Curah Hujan Chart
   var options = {
       chart: {
@@ -385,6 +339,53 @@
     },
     chart = new ApexCharts(
       document.querySelector("#turbidity_chart"),
+      options
+    );
+  chart.render();
+  var options = {
+      chart: {
+        height: 200,
+        type: 'area',
+        zoom: {
+          enabled: false
+        }
+      },
+      dataLabels: {
+        enabled: false
+      },
+      stroke: {
+        curve: 'straight'
+      },
+      colors: [
+        "#0000ff"
+      ],
+      series: [{
+        name: "Amonia",
+        data: [<?php
+                if (count($graph) > 0) {
+                  foreach (array_reverse($graph) as $row) {
+                    echo $row->amonia . ", ";
+                  }
+                } ?>]
+      }],
+      labels: [<?php
+                if (count($graph) > 0) {
+                  foreach (array_reverse($graph) as $row) {
+                    echo '"' . $row->waktu . '",';
+                  }
+                }
+                ?>],
+
+      legend: {
+        horizontalAlign: 'left'
+      },
+      grid: {
+        show: true,
+        borderColor: '#f6f6f7',
+      },
+    },
+    chart = new ApexCharts(
+      document.querySelector("#amonia_chart"),
       options
     );
   chart.render();

@@ -14,6 +14,7 @@ class Data extends RestController{
         $isi['sensor'] = $this->M_dashboard->curSensor();
 		$isi['graph'] = $this->M_dashboard->graph();
 		$isi['data'] = $this->db->get('data_sensor')->result();
+		$isi['message'] = "Successfully Retrieved Data Recap";
         $this->response($isi,200);
     }
 	public function sensoredit_post(){
@@ -24,6 +25,12 @@ class Data extends RestController{
             'batas_atas' => $_POST['batas_atas']
         );
         $response = $this->M_sensor->update($id_sensor, $data);
+        // $response['message'] = "Successfully Update Sensor Data";
 		$this->response($response,200);
+	}
+	public function threshold_get(){
+	    $threshold = $this->db->get('sensor')->result();
+	   // $threshold['message'] = "Successfully Retrieved Sensor Data";
+	    $this->response($threshold,200);
 	}
 }
