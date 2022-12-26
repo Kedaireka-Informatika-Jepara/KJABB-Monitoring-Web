@@ -49,13 +49,4 @@ class Sensor extends CI_Controller
         }
     }
 
-    public function hapus($id)
-    {
-        $this->M_squrity->getSqurity();
-        $query = $this->M_sensor->hapus($id);
-        if ($query = true) {
-            $this->session->set_flashdata('info', 'Data Berhasil Dihapus');
-            redirect('sensor');
-        }
-    }
 }
