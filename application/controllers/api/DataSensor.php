@@ -11,4 +11,8 @@ class DataSensor extends CI_Controller{
         $data = $this->M_api->insertDataSensor();
         echo json_encode($data);
     }
+    public function ucupasu(){
+        $data = $this->M_api->ucupAsu();
+        echo json_encode($data);
+    }
 }

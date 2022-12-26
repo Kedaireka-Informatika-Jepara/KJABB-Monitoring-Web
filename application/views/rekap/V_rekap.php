@@ -143,7 +143,7 @@ if (!empty($this->session->flashdata('info'))) { ?>
                             <th>Tanggal</th>
                             <th>Waktu</th>
                             <th>Suhu</th>
-                            <th>Amonia</th>
+                            <th>CO2</th>
                             <th>Curah Hujan</th>
                             <th>pH</th>
                             <th>Total Dissolved Solids</th>
@@ -157,7 +157,7 @@ if (!empty($this->session->flashdata('info'))) { ?>
                                 <td><?= $row->tanggal; ?></td>
                                 <td><?= $row->waktu; ?></td>
                                 <td><?= $row->suhu; ?></td>
-                                <td><?= $row->amonia; ?></td>
+                                <td><?= $row->co2; ?></td>
                                 <td><?= $row->curah_hujan; ?></td>
                                 <td><?= $row->ph; ?></td>
                                 <td><?= $row->tds; ?></td>
@@ -196,7 +196,7 @@ if (!empty($this->session->flashdata('info'))) { ?>
                             <option disabled selected value="pilih">Pilih Data</option>
                             <option value="semua">Semua Data</option>
                             <option value="suhu">Suhu Air</option>
-                            <option value="amonia">Amonia</option>
+                            <option value="co2">CO2</option>
                             <option value="curah">Curah Hujan</option>
                             <option value="ph">pH</option>
                             <option value="tds">Total Dissolved Solids</option>

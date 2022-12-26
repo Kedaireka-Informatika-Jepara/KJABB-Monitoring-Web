@@ -87,7 +87,7 @@ class Rekap extends CI_Controller
             if ($cetak == 'suhu') {
                 redirect($url_export2);
             }
-            if ($cetak == 'amonia') {
+            if ($cetak == 'co2') {
                 redirect($url_export3);
             }
             if ($cetak == 'curah') {
@@ -148,7 +148,7 @@ class Rekap extends CI_Controller
                 <th>Tanggal</th>
                 <th>Waktu</th>
                 <th>Suhu</th>
-                <th>Amonia</th>
+                <th>CO2</th>
                 <th>Curah Hujan</th>
                 <th>pH</th>
                 <th>Total Dissolved Solids</th>
@@ -163,7 +163,7 @@ class Rekap extends CI_Controller
                     <td><?php echo $row->tanggal; ?></td>
                     <td><?php echo $row->waktu; ?></td>
                     <td><?php echo $row->suhu; ?></td>
-                    <td><?php echo $row->amonia; ?></td>
+                    <td><?php echo $row->co2; ?></td>
                     <td><?php echo $row->curah_hujan; ?></td>
                     <td><?php echo $row->ph; ?></td>
                     <td><?php echo $row->tds; ?></td>
@@ -245,22 +245,22 @@ class Rekap extends CI_Controller
             $filter = $_GET['filter']; // Ambil data filder yang dipilih user
             if ($filter == '1') { // Jika filter nya 1 (per tanggal)
                 $tgl = $_GET['tanggal'];
-                $label = 'Data Rekap Sensor Amonia Tanggal ' . $tgl;
+                $label = 'Data Rekap Sensor CO2 Tanggal ' . $tgl;
                 $rekap = $this->M_rekap->view_by_date($tgl); // Panggil fungsi view_by_date yang ada di TransaksiModel
             } else if ($filter == '2') { // Jika filter nya 2 (per bulan)
                 $bulan = $_GET['bulan'];
                 $tahun = $_GET['tahun'];
                 $nama_bulan = array('', 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember');
-                $label = 'Data Rekap Sensor Amonia Bulan ' . $nama_bulan[$bulan] . ' ' . $tahun;
+                $label = 'Data Rekap Sensor CO2 Bulan ' . $nama_bulan[$bulan] . ' ' . $tahun;
                 $rekap = $this->M_rekap->view_by_month($bulan, $tahun); // Panggil fungsi view_by_month yang ada di TransaksiModel
             } else { // Jika filter nya 3 (per tahun)
                 $tahun = $_GET['tahun'];
-                $label = 'Data Rekap Sensor Amonia Tahun ' . $tahun;
+                $label = 'Data Rekap Sensor CO2 Tahun ' . $tahun;
                 $rekap = $this->M_rekap->view_by_year($tahun); // Panggil fungsi view_by_year yang ada di TransaksiModel
             }
         } else { // Jika user tidak mengklik tombol tampilkan
 
-            $label = 'Semua Data Rekap Sensor Amonia';
+            $label = 'Semua Data Rekap Sensor CO2';
             $rekap = $this->M_rekap->view_all(); // Panggil fungsi view_all yang ada di TransaksiModel
         }
         header('Content-Type: application/vnd.ms-excel');
@@ -277,7 +277,7 @@ class Rekap extends CI_Controller
                 <th>No</th>
                 <th>Tanggal</th>
                 <th>Waktu</th>
-                <th>Amonia</th>
+                <th>CO2</th>
             </tr>
             <?php
             $no = 1;
@@ -287,7 +287,7 @@ class Rekap extends CI_Controller
                     <td><?php echo $no++; ?></td>
                     <td><?php echo $row->tanggal; ?></td>
                     <td><?php echo $row->waktu; ?></td>
-                    <td><?php echo $row->amonia; ?></td>
+                    <td><?php echo $row->co2; ?></td>
                 </tr>
             <?php
             }

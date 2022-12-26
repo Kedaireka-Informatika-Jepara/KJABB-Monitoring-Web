@@ -15,12 +15,12 @@
       <div class="col-lg-6">
         <div class="card-box-style">
           <div class="single-click-content">
-            <span class="features-title text-primary">Amonia</span>
+            <span class="features-title text-primary">CO2</span>
             <h3><?php foreach ($sensor as $row) {
-                  echo $row->amonia;
+                  echo $row->co2;
                 } ?> PPM</h3>
           </div>
-          <div id="amonia_chart"></div>
+          <div id="co2_chart"></div>
         </div>
       </div>
     </div>
@@ -360,11 +360,11 @@
         "#0000ff"
       ],
       series: [{
-        name: "Amonia",
+        name: "CO2",
         data: [<?php
                 if (count($graph) > 0) {
                   foreach (array_reverse($graph) as $row) {
-                    echo $row->amonia . ", ";
+                    echo $row->co2 . ", ";
                   }
                 } ?>]
       }],
@@ -385,7 +385,7 @@
       },
     },
     chart = new ApexCharts(
-      document.querySelector("#amonia_chart"),
+      document.querySelector("#co2_chart"),
       options
     );
   chart.render();

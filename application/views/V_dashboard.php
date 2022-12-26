@@ -53,7 +53,7 @@
 
                                     <div class="dropdown-wrap" data-simplebar>
                                         <?php foreach ($notifikasi as $data) : ?>
-                                            <a href="<?= base_url() ?>notifikasi" class="dropdown-item d-flex align-items-center">
+                                            <a href="<?= base_url() ?>notifikasi/tandai/<?= $data->id_notif; ?>" class="dropdown-item d-flex align-items-center">
                                                 <div class="icon">
                                                     <i class='bx bx-comment-dots'></i>
                                                 </div>
