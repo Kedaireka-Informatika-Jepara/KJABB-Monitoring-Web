@@ -164,7 +164,7 @@ class Rekap extends CI_Controller
                     <td><?php echo $row->waktu; ?></td>
                     <td><?php echo $row->suhu; ?></td>
                     <td><?php echo $row->co2; ?></td>
-                    <td><?php echo $row->curah_hujan; ?></td>
+                    <td><?php if($row->curah_hujan == 1) {echo "Tidak Hujan";}else{echo "Hujan";} ?></td>
                     <td><?php echo $row->ph; ?></td>
                     <td><?php echo $row->tds; ?></td>
                     <td><?php echo $row->turbidity; ?></td>
@@ -347,7 +347,7 @@ class Rekap extends CI_Controller
                     <td><?php echo $no++; ?></td>
                     <td><?php echo $row->tanggal; ?></td>
                     <td><?php echo $row->waktu; ?></td>
-                    <td><?php echo $row->curah_hujan; ?></td>
+                    <td><?php if($row->curah_hujan == 1) {echo "Tidak Hujan";}else{echo "Hujan";} ?></td>
                 </tr>
             <?php
             }

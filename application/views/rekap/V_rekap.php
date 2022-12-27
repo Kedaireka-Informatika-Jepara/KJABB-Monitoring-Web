@@ -158,7 +158,7 @@ if (!empty($this->session->flashdata('info'))) { ?>
                                 <td><?= $row->waktu; ?></td>
                                 <td><?= $row->suhu; ?></td>
                                 <td><?= $row->co2; ?></td>
-                                <td><?= $row->curah_hujan; ?></td>
+                                <td><?php if($row->curah_hujan == 1) {echo "Tidak Hujan";}else{echo "Hujan";} ?></td>
                                 <td><?= $row->ph; ?></td>
                                 <td><?= $row->tds; ?></td>
                                 <td><?= $row->turbidity ?>

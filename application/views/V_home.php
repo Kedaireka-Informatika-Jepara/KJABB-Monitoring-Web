@@ -29,14 +29,14 @@
         <div class="card-box-style">
           <div class="single-click-content">
             <span class="features-title text-info">Curah Hujan</span>
-            <h3><?php
-                    if ($row->curah_hujan < 600) {
-                      echo "Hujan Deras";
-                    } else if ($row->curah_hujan < 800 && $row->curah_hujan >= 600) {
-                      echo "Hujan Ringan";
-                    } else {
+            <h3><?php foreach ($sensor as $row) {
+                    if ($row->curah_hujan == 1) {
                       echo "Tidak Hujan";
+                    } 
+                    else {
+                      echo "Hujan";
                     }
+                  }
                     ?></h3>
           </div>
           <div id="curah_chart"></div>
